@@ -5,8 +5,8 @@ function NavBar() {
 
     return (
         <nav>
-            <Link to="/">Sign in</Link>
-            <Link to="/sign_up">Sign up</Link>
+            <Link to="/">Sign up</Link>
+            <Link to="/sign_in">Sign in</Link>
             <Link to="/cinema/11">Cinema</Link>
             <Link to="/highlights">Highlights</Link>
             <Link to="/profile_cast/11">Cast Profile</Link>

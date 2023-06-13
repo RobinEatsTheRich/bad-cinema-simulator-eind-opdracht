@@ -2,9 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import Button from "../../components/Button/Button";
+import {Link, useNavigate} from "react-router-dom";
 
 function SignIn() {
     const { register, handleSubmit, watch } = useForm();
+    const navigate = useNavigate();
 
     //This is necessary to make sure the Submit button is disabled if username & password are not filled.
     const watchUsername = watch('username');
@@ -12,8 +14,7 @@ function SignIn() {
 
     function onFormSubmit(data) {
         console.log(data);
-        console.log(watchPassword)
-        console.log(watchUsername)
+        navigate('/highlights')
     }
 
     return (
@@ -22,73 +23,7 @@ function SignIn() {
 
             <article>
                 <form onSubmit={handleSubmit(onFormSubmit)}>
-                    <label htmlFor="iconInput">Icon
-                        <input
-                            type="radio"
-                            id="iconInput"
-                            {...register("icon")}
-                            value="moustache"
-                        />
-                        <input
-                            type="radio"
-                            id="iconInput"
-                            {...register("icon")}
-                            value="3dGlasses"
-                        />
-                        <input
-                            type="radio"
-                            id="iconInput"
-                            {...register("icon")}
-                            value="sunGlasses"
-                        />
-                        <input
-                            type="radio"
-                            id="iconInput"
-                            {...register("icon")}
-                            value="hat"
-                        />
-                        <input
-                            type="radio"
-                            checked={true}
-                            id="iconInput"
-                            {...register("icon")}
-                            value="hat"
-                        />
-                    </label>
-                    <label htmlFor="snackInput">Favorite Cinema Snack
-                        <input
-                            type="radio"
-                            id="usernameInput"
-                            {...register("snack")}
-                            value="milkshake"
-                        />
-                        <input
-                            type="radio"
-                            id="usernameInput"
-                            {...register("snack")}
-                            value="popcorn"
-                        />
-                        <input
-                            type="radio"
-                            id="usernameInput"
-                            {...register("snack")}
-                            value="beer"
-                        />
-                        <input
-                            type="radio"
-                            id="usernameInput"
-                            {...register("snack")}
-                            value="nachos"
-                        />
-                        <input
-                            type="radio"
-                            checked={true}
-                            id="usernameInput"
-                            {...register("snack")}
-                            value="none"
-                        />
-                    </label>
-                    <label htmlFor="usernameInput">Alias</label>
+                    <label htmlFor="usernameInput">Alias or Email</label>
                     <input
                         type="text"
                         id="usernameInput"
@@ -100,18 +35,13 @@ function SignIn() {
                         id="passwordInput"
                         {...register("password")}
                     />
-                    <label htmlFor="emailInput">Email <p className="smallText">(Optional)</p></label>
-                    <input
-                        type="text"
-                        id="emailInput"
-                        {...register("email")}
-                    />
                     <Button
                         buttonType="submit"
                         onSubmit={handleSubmit}
                         isDisabled={!watchPassword || !watchUsername}
                     >Okay!</Button>
                 </form>
+                <Link to="/">Create Account instead</Link>
             </article>
         </>
     );
