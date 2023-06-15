@@ -1,18 +1,55 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-function NavBar() {
+import {useForm} from 'react-hook-form';
+import {Link, useNavigate} from "react-router-dom";
 
+
+//import components
+import Logo from "../Logo/Logo";
+import AccountWindow from "../AccountWindow/AccountWindow";
+
+
+
+function NavBar() {
+    //These are necessities for the packages.
+    const {register, handleSubmit, watch } = useForm();
+    const watchQuery = watch('searchQuery');
+    const navigate = useNavigate();
+
+    function onFormSubmit(data){
+        navigate(`/searching/${data.searchQuery}`)
+    }
 
     return (
         <nav>
-            <Link to="/">Sign up</Link>
-            <Link to="/sign_in">Sign in</Link>
-            <Link to="/cinema/11">Cinema</Link>
-            <Link to="/highlights">Highlights</Link>
-            <Link to="/profile_cast/11">Cast Profile</Link>
-            <Link to="/profile_movie/11">Movie Profile</Link>
-            <Link to="/searching/11">Searching</Link>
-
+            <div className="navCenterpiece">
+                <Logo/>
+                <form
+                    className="searchBar"
+                    onSubmit={handleSubmit(onFormSubmit)}>
+                    <input
+                        type="text"
+                        id="searchQueryInput"
+                        {...register("searchQuery")}
+                    />
+                    <div className="separator"/>
+                    <button
+                        type="submit"
+                        disabled={!watchQuery}
+                    >
+                        <img src="../assets/looking_glass.png" alt="Search"/>
+                    </button>
+                </form>
+            </div>
+            <div className="navAccountThings">
+                <Link to="/">Log Out</Link>
+                <button
+                    type="button"
+                    //onClick={AccountWindow}
+                >
+                    <h3>MovieHater</h3>
+                    <img src="" alt="Profile Pic"/>
+                </button>
+            </div>
         </nav>
     );
 }
