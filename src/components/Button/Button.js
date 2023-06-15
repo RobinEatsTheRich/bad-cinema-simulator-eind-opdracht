@@ -3,7 +3,7 @@ function Button ({ buttonType , isDisabled , onClick, children }){
     return(
         <button
             type={buttonType ? buttonType :  "button"}
-            disabled={isDisabled ? isDisabled : false}
+            disabled={isDisabled}
             onClick={onClick}
         >
             { children }
