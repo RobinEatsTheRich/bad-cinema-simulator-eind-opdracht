@@ -1,13 +1,24 @@
-import React from 'react';
+//Import packages
+import React, {useContext} from 'react';
 import {Link, useParams} from "react-router-dom";
+
+//Import Context
+import {confirmContext} from "../../context/ConfirmWindowProvider/ConfirmWindowProvider";
+
+//Import components
 import Button from "../../components/Button/Button";
-import ConfirmWindow from "../../components/ConfirmWindow/ConfirmWindow";
+import NavBar from "../../components/NavBar/NavBar";
+
+
 
 function ProfileMovie() {
+    const { confirmWindow, PlaceConfirmWindow } = useContext(confirmContext)
     const { id } = useParams();
 
     return (
         <>
+            <NavBar/>
+            {confirmWindow}
             <img src="https://cdn.marvel.com/content/1x/across_the_spider-verse.jpg" alt="The Movie poster"/>
             <article>
                 <div className="titleAndYear">
@@ -65,7 +76,7 @@ function ProfileMovie() {
                     </ul>
                 </div>
                 <Button
-                    onClick={()=>ConfirmWindow}
+                    onClick={() => {PlaceConfirmWindow()}}
                 >
                     <img src="" alt="Watch Button"/>
                 </Button>
