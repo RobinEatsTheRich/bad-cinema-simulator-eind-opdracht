@@ -5,7 +5,7 @@ import {Link, useNavigate} from "react-router-dom";
 
 //import components
 import Logo from "../Logo/Logo";
-import AccountWindow from "../AccountWindow/AccountWindow";
+//import AccountWindow from "../AccountWindow/AccountWindow";
 
 
 
