@@ -10,44 +10,44 @@ import {useNavigate} from "react-router-dom";
 
 
 
-function SearchResult() {
+function SearchResult({ result, type}) {
 
     const { PlaceConfirmWindow } = useContext(confirmContext)
     const navigate = useNavigate();
 
-
-    // if (result === "movie"){
+    if (type === "movie"){
         return (
-            <Button
+            <button
                 className="searchResult"
-                onClick={() => {navigate(`/profile_movie/11`)}}
+                onClick={() => {navigate(`/profile_movie/${result.id}`)}}
             >
                 <figure>
-                    <img src="" alt={`Poster for 11`}/>
+                    <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${result.poster_path}`}
+                         alt={`The poster for ${result.original_title}`}/>
                 </figure>
                 <div className="titleAndYear">
-                    <h1>SPIDER-MAN: ACROSS THE SPIDER-VERSE</h1>
-                    <p>2022</p>
+                    <h1>{result.original_title.toUpperCase()}</h1>
+                    <p>{result.release_date.slice(0, 4)}</p>
                 </div>
                 <Button
-                    onClick={() => {PlaceConfirmWindow()}}
+                    onClick={() => {PlaceConfirmWindow(result)}}
                     >
                     <img src="" alt="Watch Button"/>
                 </Button>
+            </button>
+        );
+    }
+    else{
+        return (
+            <Button
+                className="searchResult"
+                onClick={navigate(`/profile_cast/:${result}`)}
+            >
+                <img src="" alt='Cast Star'/>
+                <h1>EMILY BLUNT</h1>
             </Button>
         );
-    // }
-    // else{
-    //     return (
-    //         <Button
-    //             className="searchResult"
-    //             onClick={navigate(`/profile_cast/:${result}`)}
-    //         >
-    //             <img src="" alt='Cast Star'/>
-    //             <h1>EMILY BLUNT</h1>
-    //         </Button>
-    //     );
-    // }
+    }
 }
 
 export default SearchResult;

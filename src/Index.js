@@ -1,16 +1,23 @@
+//Import packages
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter as Router} from 'react-router-dom';
-import './index.css';
 import App from './App';
+
+//Import Context
 import ConfirmWindowContextProvider from "./context/ConfirmWindowProvider/ConfirmWindowProvider";
+import AccountContextProvider from "./context/Account/AccountProvider";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
 root.render(
     <Router>
-        <ConfirmWindowContextProvider>
-            <App/>
-        </ConfirmWindowContextProvider>
+        <AccountContextProvider>
+            <ConfirmWindowContextProvider>
+                <App/>
+            </ConfirmWindowContextProvider>
+        </AccountContextProvider>
     </Router>
 );
 

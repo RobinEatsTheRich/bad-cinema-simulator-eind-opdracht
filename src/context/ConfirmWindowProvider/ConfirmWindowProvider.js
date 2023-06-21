@@ -9,14 +9,14 @@ function ConfirmWindowContextProvider({ children }) {
     const [confirmWindow, setConfirmWindow] = useState(<></>);
     const navigate = useNavigate();
 
-    function PlaceConfirmWindow(movie) {
+    function PlaceConfirmWindow( movieData ) {
         setConfirmWindow(
             <>
                 <article className="confirmWindow">
                     <h2>Watch this movie?</h2>
                     <figure>
-                        <img src="https://cdn.marvel.com/content/1x/across_the_spider-verse.jpg"
-                             alt="The poster for Across the spider-verse"/>
+                        <img src={`https://www.themoviedb.org/t/p/original/${movieData.poster_path}`}
+                             alt={`The poster for ${movieData.original_title}`}/>
                     </figure>
                     <Button
                         onClick={() => setConfirmWindow(<></>)}
@@ -24,7 +24,7 @@ function ConfirmWindowContextProvider({ children }) {
                         <img src="" alt="X"/>
                     </Button>
                     <Button
-                        onClick={() => navigate(`/cinema/11`)}
+                        onClick={() => navigate(`/cinema/${movieData.id}`)}
                     >
                         Okay!
                     </Button>
