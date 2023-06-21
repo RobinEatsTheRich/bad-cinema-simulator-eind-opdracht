@@ -13,9 +13,6 @@ import ProfileMovie from "./pages/ProfileMovie/ProfileMovie";
 import Cinema from "./pages/Cinema/Cinema";
 import Error from "./pages/Error/Error";
 
-//Import Components
-import NavBar from "./components/NavBar/NavBar";
-
 
 
 function App() {

@@ -7,6 +7,7 @@ import {confirmContext} from "../../context/ConfirmWindowProvider/ConfirmWindowP
 
 //Import Components
 import NavBar from "../../components/NavBar/NavBar";
+import SearchResult from "../../components/SearchResult/SearchResult";
 
 
 
@@ -19,6 +20,9 @@ function ProfileCast() {
             <NavBar/>
             {confirmWindow}
             <h2>ProfileCast/{[id]}</h2>
+
+            <SearchResult result={id}/>
+            <SearchResult result={id}/>
         </>
     );
 };
