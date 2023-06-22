@@ -10,12 +10,12 @@ import {useNavigate} from "react-router-dom";
 
 
 
-function SearchResult({ result, type}) {
+function SearchResult({ result, typeIsMovie}) {
 
     const { PlaceConfirmWindow } = useContext(confirmContext)
     const navigate = useNavigate();
 
-    if (type === "movie"){
+    if (typeIsMovie){
         return (
             <button
                 className="searchResult"
@@ -43,8 +43,9 @@ function SearchResult({ result, type}) {
                 className="searchResult"
                 onClick={navigate(`/profile_cast/:${result}`)}
             >
-                <img src="" alt='Cast Star'/>
-                <h1>EMILY BLUNT</h1>
+                src={`https://image.tmdb.org/t/p/original${result.profile_path}`}
+                alt={`A profile picture of ${result.name}`}/>
+                <h1>{result.name.toUpperCase()}</h1>
             </Button>
         );
     }
