@@ -1,5 +1,5 @@
 //Import packages
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 
 //Import Context
@@ -8,81 +8,104 @@ import {confirmContext} from "../../context/ConfirmWindowProvider/ConfirmWindowP
 //Import components
 import Button from "../../components/Button/Button";
 import NavBar from "../../components/NavBar/NavBar";
+import axios from "axios";
+import {AccountContext} from "../../context/Account/AccountProvider";
 
 
 
 function ProfileMovie() {
-    const { confirmWindow, PlaceConfirmWindow } = useContext(confirmContext)
     const { id } = useParams();
+    const { confirmWindow, PlaceConfirmWindow } = useContext(confirmContext)
+    const { apiKey } = useContext(AccountContext)
+    const [ movieData, setMovieData ] = useState([])
+    const [ castData, setCastData ] = useState([])
+
+    useEffect(() => {
+        const fetchOptions = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${apiKey}`
+            }
+        }
+        async function fetchMovieData() {
+            try {
+                const result = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, fetchOptions);
+                setMovieData(result.data);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        async function fetchCastData() {
+            try {
+                const result = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`, fetchOptions);
+                setCastData(result.data);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        void fetchMovieData();
+        void fetchCastData();
+    }, [apiKey, id]);
 
     return (
         <>
             <NavBar/>
-            {confirmWindow}
-            <img src="https://cdn.marvel.com/content/1x/across_the_spider-verse.jpg" alt="The Movie poster"/>
-            <article>
-                <div className="titleAndYear">
-                    <h1>{id}: SPIDER-MAN: ACROSS THE SPIDER-VERSE</h1>
-                    <p>2023</p>
-                </div>
-                <div className="castField">
-                    <p>Directed by:</p>
-                    <ul>
-                        <li>
-                            <Link to="/profile_cast/11">
-                                Joaquim Dos Santos
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile_cast/11">
-                                Justin K. Thompson
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <div className="castField">
-                    <p>Cast:</p>
-                    <ul>
-                        <li>
-                            <Link to="/profile_cast/11">
-                                Shameik Moore
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile_cast/11">
-                                Hailee Steinfeld
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile_cast/11">
-                                Brian Tyree Henry
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile_cast/11">
-                                Luna Lauren Velez
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile_cast/11">
-                                Jake Johnson
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile_cast/11">
-                                Oscar Isaac
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <Button
-                    onClick={() => {PlaceConfirmWindow()}}
-                >
-                    <img src="" alt="Watch Button"/>
-                </Button>
-            </article>
+            { movieData.poster_path && castData.cast &&
+                <>
+                    {confirmWindow}
+                    <img src={`https://www.themoviedb.org/t/p/original/${movieData.poster_path}`}
+                         alt={`The poster for ${movieData.original_title}`}/>
+                    <article>
+                        <div className="titleAndYear">
+                            <h1>{movieData.original_title.toUpperCase()}</h1>
+                            <p>{movieData.release_date.slice(0, 4)}</p>
+                        </div>
+                        <div className="castField">
+                            <p>Directed by:</p>
+                            <ul>
+                                {castData.crew.map((castMember) =>
+                                    {
+                                        if(castMember.job === "Director"){
+                                            return(
+                                            <li
+                                                key={`cast_${castMember.id}`}
+                                            >
+                                                <Link to={`/profile_cast/${castMember.id}`}>
+                                                    {castMember.name}
+                                                </Link>
+                                            </li>
+                                            )
+                                        }
+                                    }
+                                )}
+                            </ul>
+                        </div>
+                        <div className="castField">
+                            <p>Cast:</p>
+                            <ul>
+                                {castData.cast.map((castMember) =>
+                                    <li
+                                    key={`cast_${castMember.id}`}
+                                    >
+                                        <Link to={`/profile_cast/${castMember.id}`}>
+                                            {castMember.name}
+                                        </Link>
+                                    </li>
+                                )}
+                            </ul>
+                        </div>
+                        <Button
+                            onClick={() => {PlaceConfirmWindow(movieData)}}
+                        >
+                            <img src="" alt="Watch Button"/>
+                        </Button>
+                    </article>
+                </>
+            }
         </>
     );
-};
+}
 
 export default ProfileMovie;

@@ -10,7 +10,6 @@ import Logo from "../Logo/Logo";
 
 
 function NavBar() {
-    //These are necessities for the packages.
     const {register, handleSubmit, watch } = useForm();
     const watchQuery = watch('searchQuery');
     const navigate = useNavigate();
