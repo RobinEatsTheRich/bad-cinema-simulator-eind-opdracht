@@ -20,7 +20,8 @@ function Searching() {
     const { apiKey } = useContext(AccountContext)
 
     const [ searchData, setSearchData ] = useState([])
-    const [ searchForMovie, toggleSearchForMovie ] = useState(true)
+    const [ queryType, setQueryType ] = useState("movie")
+    const [ renderElement, setRenderElement ] = useState(<></>)
 
     useEffect(() => {
         const fetchOptions = {
@@ -30,56 +31,66 @@ function Searching() {
                 Authorization: `Bearer ${apiKey}`
             }
         }
-        function queryType(){
-            if (searchForMovie){
-                return "movie"
-            }else
-                return "person"
-        }
 
         async function fetchData() {
             try {
-                const result = await axios.get(`https://api.themoviedb.org/3/search/${queryType}?query=${id}&include_adult=true&language=en-US&page=1`, fetchOptions);
+                const result = await axios.get(`https://api.themoviedb.org/3/search/${queryType}?query=${id}&include_adult=false&language=en-US&page=1`, fetchOptions);
                 //Sorting chronologically
-                console.log(result.data)
-                //result.data.cast.sort((a, b) => (a.popularity < b.popularity))
-                //setSearchData(result.data.results);
+                result.data.results.sort((a, b) => (a.popularity < b.popularity))
+                setSearchData(result.data.results);
             } catch (e) {
                 console.error(e);
             }
         }
 
         void fetchData();
-    }, [apiKey, id, searchForMovie]);
+    }, [apiKey, id, queryType]);
 
-    React.useEffect(() => {
-        console.log(searchData);
+    useEffect(() => {
+        console.log(searchData)
     }, [searchData]);
 
-    function checkResultType(result){
-        return(
-            result.gender ? "cast" : "movie"
+    useEffect(() => {
+        setRenderElement(
+            searchData.map((searchResult) =>
+                <SearchResult
+                    result={searchResult}
+                    queryType={queryType}/>
+            )
         )
+    }, [searchData]);
+
+    function toggleQueryType(){
+        if (queryType === "movie"){
+            return "person"
+        } else{
+            return "movie"
+        }
+    }
+    function toggleButtonText(){
+        if (queryType === "movie"){
+            return "view Cast results"
+        } else{
+            return "view Movie results"
+        }
     }
 
     return (
         <>
             <NavBar/>
-            { searchData &&
+            { searchData[0] &&
                 <>
                     {confirmWindow}
                     <h3>SEARCH RESULTS FOR <strong>"{ id.toUpperCase() }"</strong></h3>
                     <Button
-                        onClick={toggleSearchForMovie(!searchForMovie)}>
-                        Toggle Movie Search
+                        onClick={() =>
+                        setQueryType(toggleQueryType())}
+                        >
+                        {toggleButtonText()}
                     </Button>
-
-                    {searchData.map((result) =>
-                        <SearchResult
-                            result={result}
-                            type={checkResultType(result)}
-                        />
-                    )}
+                    <article>
+                        {renderElement}
+                    </article>
                 </>
             }
         </>

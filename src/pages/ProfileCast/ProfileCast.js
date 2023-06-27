@@ -80,7 +80,7 @@ function ProfileCast() {
                         {creditData.map((movie) =>
                             <SearchResult
                                 result={movie}
-                                typeIsMovie="true"
+                                queryType="movie"
                             />
                         )}
                     </div>
