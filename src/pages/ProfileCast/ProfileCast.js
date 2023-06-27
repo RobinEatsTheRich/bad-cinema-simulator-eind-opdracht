@@ -16,7 +16,7 @@ import {AccountContext} from "../../context/Account/AccountProvider";
 function ProfileCast() {
     const { id } = useParams();
     const { confirmWindow } = useContext(confirmContext)
-    const { apiKey } = useContext(AccountContext)
+    const { tmdbKey } = useContext(AccountContext)
     const [ castData, setCastData ] = useState([])
     const [ creditData, setCreditData ] = useState([])
 
@@ -25,7 +25,7 @@ function ProfileCast() {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${apiKey}`
+                Authorization: `Bearer ${tmdbKey}`
             }
         }
         async function fetchCastData() {
@@ -58,7 +58,7 @@ function ProfileCast() {
 
         void fetchCastData();
         void fetchCreditData();
-    }, [apiKey, id]);
+    }, [tmdbKey, id]);
 
     return (
         <>

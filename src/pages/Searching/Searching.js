@@ -17,7 +17,7 @@ import Button from "../../components/Button/Button";
 function Searching() {
     const { id } = useParams();
     const { confirmWindow } = useContext(confirmContext)
-    const { apiKey } = useContext(AccountContext)
+    const { tmdbKey } = useContext(AccountContext)
 
     const [ searchData, setSearchData ] = useState([])
     const [ queryType, setQueryType ] = useState("movie")
@@ -28,7 +28,7 @@ function Searching() {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${apiKey}`
+                Authorization: `Bearer ${tmdbKey}`
             }
         }
 
@@ -44,11 +44,7 @@ function Searching() {
         }
 
         void fetchData();
-    }, [apiKey, id, queryType]);
-
-    useEffect(() => {
-        console.log(searchData)
-    }, [searchData]);
+    }, [tmdbKey, id, queryType]);
 
     useEffect(() => {
         setRenderElement(
