@@ -35,26 +35,26 @@ function Cinema() {
         void fetchMovieData();
     }, [tmdbKey, id]);
 
-    // useEffect(() => {
-    //     const fetchOptions = {
-    //         method: 'GET',
-    //         url: `https://cinema-api.p.rapidapi.com/get_reviews/${movieData.imdb_id}`,
-    //         headers: {
-    //             'X-RapidAPI-Key': rapidKey,
-    //             'X-RapidAPI-Host': 'cinema-api.p.rapidapi.com'
-    //         }
-    //     }
-    //     async function fetchReviewData() {
-    //         try {
-    //             const result = await axios.request(fetchOptions);
-    //             setReviewData(result.data.data);
-    //         } catch (e) {
-    //             console.error(e);
-    //         }
-    //     }
-    //
-    //     void fetchReviewData();
-    // }, [movieData.imdb_id, rapidKey, id]);
+    useEffect(() => {
+        const fetchOptions = {
+            method: 'GET',
+            url: `https://cinema-api.p.rapidapi.com/get_reviews/${movieData.imdb_id}`,
+            headers: {
+                'X-RapidAPI-Key': rapidKey,
+                'X-RapidAPI-Host': 'cinema-api.p.rapidapi.com'
+            }
+        }
+        async function fetchReviewData() {
+            try {
+                const result = await axios.request(fetchOptions);
+                setReviewData(result.data.data);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        void fetchReviewData();
+    }, [movieData, rapidKey, id]);
 
 
     useEffect(() => {

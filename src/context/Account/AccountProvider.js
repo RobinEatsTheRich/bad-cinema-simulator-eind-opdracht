@@ -4,13 +4,31 @@ export const AccountContext = createContext(null);
 
 function AccountContextProvider({ children }) {
 
-    const [apiKey, setApiKey] = useState(
+    const [accountData, setAccountData] = useState({
+        auth: true,
+        userData: {
+            alias: "",
+            password: "",
+            iconId: "",
+            snackId: "",
+            email: null
+        }
+    })
+
+    const [tmdbKey, setTmdbKey] = useState(
         "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMDcwYTI1MTAyNjdmNWQzZGE0ODVlMzdlMWJlYjhkMCIsInN1YiI6IjY0OTJlMDEzZjlhYTQ3MDBjOGRlOTllZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.53KPFs3yCEm27xFMZ4_TjSZCZCPaQtaxTbvTdby1ELQ"
+    );
+    const [rapidKey, setRapidKey] = useState(
+        "600a11d05emshc158f5b200c285cp1d59cfjsn9cc360e4d455"
     );
 
     const data = {
-        apiKey,
-        setApiKey
+        accountData,
+        setAccountData,
+        tmdbKey,
+        setTmdbKey,
+        rapidKey,
+        setRapidKey
     }
 
     return (

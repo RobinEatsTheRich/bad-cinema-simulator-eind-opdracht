@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useForm } from 'react-hook-form';
 
 import Button from "../../components/Button/Button";
 import {Link, useNavigate} from "react-router-dom";
+import {AccountContext} from "../../context/Account/AccountProvider";
 
 function SignIn() {
+    const { accountData, setAccountData } = useContext(AccountContext)
     const { register, handleSubmit, watch } = useForm();
     const navigate = useNavigate();
 
@@ -14,6 +16,16 @@ function SignIn() {
 
     function onFormSubmit(data) {
         console.log(data);
+        setAccountData({
+            auth: true,
+            userData: {
+                alias: data.username,
+                password: data.password,
+                iconId: "",
+                snackId: "",
+                email: null
+            }})
+        console.log(accountData);
         navigate('/highlights')
     }
 

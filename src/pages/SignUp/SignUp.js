@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useForm } from 'react-hook-form';
 
 import Button from "../../components/Button/Button";
 import {Link, useNavigate} from "react-router-dom";
+import {AccountContext} from "../../context/Account/AccountProvider";
 
 function SignUp() {
+    const { accountData, setAccountData } = useContext(AccountContext)
     const { register, handleSubmit, watch } = useForm();
     const navigate = useNavigate();
 
@@ -14,6 +16,19 @@ function SignUp() {
 
     function onFormSubmit(data) {
         console.log(data);
+        setAccountData({
+            auth: true,
+            userData: {
+                alias: data.username,
+                password: data.password,
+                iconId: data.icon,
+                snackId: data.snack,
+                email: (
+                    data.password ? data.password
+                        : null
+                )
+            }})
+        console.log(accountData);
         navigate('/highlights')
     }
 
@@ -28,32 +43,32 @@ function SignUp() {
                             type="radio"
                             id="iconInput"
                             {...register("icon")}
-                            value="moustache"
+                            value="0"
                         />
                         <input
                             type="radio"
                             id="iconInput"
                             {...register("icon")}
-                            value="3dGlasses"
+                            value="1"
                         />
                         <input
                             type="radio"
                             id="iconInput"
                             {...register("icon")}
-                            value="sunGlasses"
+                            value="2"
                         />
                         <input
                             type="radio"
                             id="iconInput"
                             {...register("icon")}
-                            value="hat"
+                            value="3"
                         />
                         <input
                             type="radio"
                             checked={true}
                             id="iconInput"
                             {...register("icon")}
-                            value="hat"
+                            value="4"
                         />
                     </label>
                     <label htmlFor="snackInput">Favorite Cinema Snack
@@ -61,32 +76,32 @@ function SignUp() {
                             type="radio"
                             id="usernameInput"
                             {...register("snack")}
-                            value="milkshake"
+                            value="0"
                         />
                         <input
                             type="radio"
                             id="usernameInput"
                             {...register("snack")}
-                            value="popcorn"
+                            value="1"
                         />
                         <input
                             type="radio"
                             id="usernameInput"
                             {...register("snack")}
-                            value="beer"
+                            value="2"
                         />
                         <input
                             type="radio"
                             id="usernameInput"
                             {...register("snack")}
-                            value="nachos"
+                            value="3"
                         />
                         <input
                             type="radio"
                             checked={true}
                             id="usernameInput"
                             {...register("snack")}
-                            value="none"
+                            value="4"
                         />
                     </label>
                     <label htmlFor="usernameInput">Alias</label>

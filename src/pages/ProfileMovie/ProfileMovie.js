@@ -16,7 +16,7 @@ import {AccountContext} from "../../context/Account/AccountProvider";
 function ProfileMovie() {
     const { id } = useParams();
     const { confirmWindow, PlaceConfirmWindow } = useContext(confirmContext)
-    const { apiKey } = useContext(AccountContext)
+    const { tmdbKey } = useContext(AccountContext)
     const [ movieData, setMovieData ] = useState([])
     const [ castData, setCastData ] = useState([])
 
@@ -25,7 +25,7 @@ function ProfileMovie() {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${apiKey}`
+                Authorization: `Bearer ${tmdbKey}`
             }
         }
         async function fetchMovieData() {
@@ -47,7 +47,7 @@ function ProfileMovie() {
 
         void fetchMovieData();
         void fetchCastData();
-    }, [apiKey, id]);
+    }, [tmdbKey, id]);
 
     return (
         <>
