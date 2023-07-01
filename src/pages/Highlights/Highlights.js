@@ -13,7 +13,7 @@ import {AccountContext} from "../../context/Account/AccountProvider";
 
 function Highlights() {
 
-    const { tmdbKey } = useContext(AccountContext)
+    const { apiKey } = useContext(AccountContext)
     const [ popularMovieData, setPopularMovieData ] = useState([])
 
     useEffect(() => {
@@ -21,7 +21,7 @@ function Highlights() {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${tmdbKey}`
+                Authorization: `Bearer ${apiKey}`
             }
         }
         async function fetchHighlightData() {
@@ -34,7 +34,7 @@ function Highlights() {
         }
 
         void fetchHighlightData();
-    }, [tmdbKey]);
+    }, []);
 
     return (
         <>
