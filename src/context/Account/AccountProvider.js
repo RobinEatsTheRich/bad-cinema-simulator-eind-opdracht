@@ -11,7 +11,7 @@ function AccountContextProvider({ children }) {
             password: "",
             iconId: "",
             snackId: "",
-            email: null
+            email: ""
         }
     })
 

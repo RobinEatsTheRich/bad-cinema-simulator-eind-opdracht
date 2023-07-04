@@ -54,6 +54,7 @@ function SignIn() {
                     >Okay!</Button>
                 </form>
                 <Link to="/">Create Account instead</Link>
+                <Link to="/highlights">Continue as guest</Link>
             </article>
         </>
     );
