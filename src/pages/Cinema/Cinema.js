@@ -8,6 +8,7 @@ function Cinema() {
     const { tmdbKey, rapidKey } = useContext(AccountContext)
     const [ movieData, setMovieData ] = useState([])
     const [ reviewData, setReviewData ] = useState([])
+    let elementNumber = 0;
 
     //These are all the Reviews text bubbles
     const [ textBubble1, setTextBubble1 ] = useState(<></>)
@@ -57,73 +58,70 @@ function Cinema() {
     }, [movieData, rapidKey, id]);
 
 
-    useEffect(() => {
-        console.log(movieData)
-        console.log("Review Data:")
-        console.log(reviewData)
-    }, [movieData, reviewData]);
+    function setReview() {
+        let randomHeckling = reviewData[Math.floor(Math.random() * reviewData.length)].Title
 
-    // function content() {
-    //     return(
-    //         <div className="review">
-    //             <p>
-    //                 {reviewData[
-    //                     Math.floor(Math.random() * reviewData.length)
-    //                     ].title}
-    //             </p>
-    //         </div>
-    //     )
-    // }
-    // async function summonReviews() {
-    //     let elementNumber = 0;
-    //     async function sleepTimer(){
-    //         await new Promise(r => setTimeout(r, (Math.random() * 10000 + 5000)));
-    //     }
-    //     while(elementNumber > 0) {
-    //         void sleepTimer()
-    //         if(elementNumber >= 4){
-    //             elementNumber = 0;
-    //         } else{
-    //             switch (elementNumber) {
-    //                 case 0:
-    //                     setTextBubble1(content())
-    //                     break;
-    //                 case 1:
-    //                     setTextBubble2(content())
-    //                     break;
-    //                 case 2:
-    //                     setTextBubble3(content())
-    //                     break;
-    //                 case 3:
-    //                     setTextBubble4(content())
-    //                     break;
-    //                 default:
-    //                     break;
-    //             }
-    //             elementNumber++
-    //         }
-    //     }
-    // }
-    //
-    // //getting the party started
-    // useEffect(() => {
-    //     void summonReviews();
-    // },[]);
+        if (elementNumber >= 4) {
+            elementNumber = 0;
+        } else {
+            switch (elementNumber) {
+                case 0:
+                    console.log(elementNumber + " is:")
+                    console.log(randomHeckling)
+                    //setTextBubble1(randomHeckling)
+                    break;
+                case 1:
+                    console.log(elementNumber + " is:")
+                    console.log(randomHeckling)
+                    //setTextBubble2(randomHeckling)
+                    break;
+                case 2:
+                    console.log(elementNumber + " is:")
+                    console.log(randomHeckling)
+                    //setTextBubble3(randomHeckling)
+                    break;
+                case 3:
+                    console.log(elementNumber + " is:")
+                    console.log(randomHeckling)
+                    //setTextBubble4(randomHeckling)
+                    break;
+                default:
+                    break;
+            }
+            elementNumber++
+        }
+        setTimeout(setReview, (Math.random() * 12000 + 1000))
+    }
+
+    if (Object.keys(reviewData).length > 0) {
+        setReview()
+    }
+
+
 
     return (
         <>
-            { movieData.original_title &&
+            { (Object.keys(reviewData).length > 0) &&
                 <>
                     <h2>Now watching: {movieData.original_title}</h2>
-                    {textBubble1}
-                    {textBubble2}
-                    {textBubble3}
-                    {textBubble4}
+                    <div className="heckleContainer">
+                        <p>{textBubble1}</p>
+                    </div>
+                    <div className="heckleContainer">
+                        <p>{textBubble2}</p>
+                    </div>
+                    <div className="heckleContainer">
+                        <p>{textBubble3}</p>
+                    </div>
+                    <div className="heckleContainer">
+                        <p>{textBubble4}</p>
+                    </div>
 
                 </>
             }
         </>
     );
 }
+
 
 export default Cinema;

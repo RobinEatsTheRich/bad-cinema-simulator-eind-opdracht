@@ -32,7 +32,6 @@ function SignUp() {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer xxx.xxx.xxx",
             }
         }
         async function testBackend() {
@@ -95,7 +94,7 @@ function SignUp() {
         }
         async function postToBackend() {
             try {
-                const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', postData, postOptions);
+                const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', postData);
                 console.log(result);
             } catch (e) {
                 console.error(e);
