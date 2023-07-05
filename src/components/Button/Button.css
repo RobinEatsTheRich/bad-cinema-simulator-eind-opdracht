@@ -1,0 +1,20 @@
+.buttonComponent{
+    border-radius: 20px;
+    border: 3px solid #FFBF1B;
+    background: #353134;
+    box-shadow: 0 4px 0 10px #1C191A;
+    padding: 10px 50px 10px 50px;
+
+    font-size: 20px;
+}
+.buttonComponent:hover{
+    background: #4d444a;
+}
+.buttonComponent:active{
+    border: 3px solid white;
+ }
+.buttonComponent:disabled{
+    background: #1C191A;
+    border: 3px solid #353134;
+    color: #353134;
+}

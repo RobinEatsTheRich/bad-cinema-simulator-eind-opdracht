@@ -1,3 +1,51 @@
+/*/////////////--CSS RESET--/////////////*/
+*{
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+
+  /*placeholder:*/
+  background-color: #1C191A;
+  margin: 5px;
+}
+
+/*placeholder:*/
 img{
   height: 400px;
+}
+
+/*/////////////--Typography--/////////////*/
+h1, h2, h3{
+  color: #FFBF1B;
+  font-family: "Roboto Condensed", serif;
+  font-weight: Normal;
+}
+p, label, button, input, a{
+  color: white;
+  font-family: "Roboto Condensed", serif;
+  font-size: 20px;
+  font-weight: lighter;
+}
+.smallText{
+  font-size: 10px;
+}
+
+
+/*/////////////--Global Elements--/////////////*/
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+input{
+  height: 25px;
+  border-radius: 20px;
+  background: #353134;
+  padding-left: 15px;
+}
+input:focus{
+  background: #4d444a;
 }

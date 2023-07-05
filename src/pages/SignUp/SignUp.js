@@ -3,12 +3,14 @@ import React, {useContext, useEffect, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
+import "./SignUp.css";
 
 //Import context
 import {AccountContext} from "../../context/Account/AccountProvider";
 
 //Import components
 import Button from "../../components/Button/Button";
+import Logo from "../../components/Logo/Logo";
 
 
 function SignUp() {
@@ -123,80 +125,96 @@ function SignUp() {
 
     return (
         <>
-            <h2>SignUp</h2>
+            <Logo/>
 
-            <article>
+            <h2>Create Account</h2>
+            <article className="accountWindow">
                 <form onSubmit={handleSubmit(onFormSubmit)}>
-                    <label htmlFor="iconInput">Icon
+                    <label htmlFor="iconInput"
+                    className="iconInput">
+                        Icon
+                        <div className="options">
                         <input
+                            className="radioIcon"
                             type="radio"
                             id="iconInput"
                             {...register("icon")}
                             value="0"
                         />
                         <input
+                            className="radioIcon"
                             type="radio"
                             id="iconInput"
                             {...register("icon")}
                             value="1"
                         />
                         <input
+                            className="radioIcon"
                             type="radio"
                             id="iconInput"
                             {...register("icon")}
                             value="2"
                         />
                         <input
+                            className="radioIcon"
                             type="radio"
                             id="iconInput"
                             {...register("icon")}
                             value="3"
                         />
                         <input
+                            className="radioIcon"
                             type="radio"
                             checked={true}
                             id="iconInput"
                             {...register("icon")}
                             value="4"
                         />
+                        </div>
                     </label>
-                    <label htmlFor="snackInput">Favorite Cinema Snack
-                        <input
-                            type="radio"
-                            id="snackInput"
-                            {...register("snack")}
-                            value="0"
-                        />
-                        <input
-                            type="radio"
-                            id="snackInput"
-                            {...register("snack")}
-                            value="1"
-                        />
-                        <input
-                            type="radio"
-                            id="snackInput"
-                            {...register("snack")}
-                            value="2"
-                        />
-                        <input
-                            type="radio"
-                            id="snackInput"
-                            {...register("snack")}
-                            value="3"
-                        />
-                        <input
-                            type="radio"
-                            checked={true}
-                            id="snackInput"
-                            {...register("snack")}
-                            value="4"
-                        />
+                    <label htmlFor="snackInput"
+                           className="snackInput">Favorite Cinema Snack
+                        <div className="options">
+                            <input
+                                className="radioIcon"
+                                type="radio"
+                                id="snackInput"
+                                {...register("snack")}
+                                value="0"
+                            />
+                            <input
+                                className="radioIcon"
+                                type="radio"
+                                id="snackInput"
+                                {...register("snack")}
+                                value="1"
+                            />
+                            <input
+                                className="radioIcon"
+                                type="radio"
+                                id="snackInput"
+                                {...register("snack")}
+                                value="2"
+                            />
+                            <input
+                                className="radioIcon"
+                                type="radio"
+                                id="snackInput"
+                                {...register("snack")}
+                                value="3"
+                            />
+                            <input
+                                className="radioIcon"
+                                type="radio"
+                                checked={true}
+                                id="snackInput"
+                                {...register("snack")}
+                                value="4"
+                            />
+                        </div>
                     </label>
                     <label htmlFor="usernameInput">Alias
-                        <p className="smallText">
-                            (Must contain 6 characters)
-                        </p>
+                        <p className="smallText">(Must contain 6 characters)</p>
                     </label>
                     <input
                         type="text"
@@ -204,16 +222,16 @@ function SignUp() {
                         {...register("username")}
                     />
                     <label htmlFor="passwordInput">Password
-                        <p className="smallText">
-                            (Must contain 6 characters)
-                        </p>
+                        <p className="smallText">(Must contain 6 characters)</p>
                     </label>
                     <input
                         type="password"
                         id="passwordInput"
                         {...register("password")}
                     />
-                    <label htmlFor="emailInput">Email <p className="smallText">(Optional)</p></label>
+                    <label htmlFor="emailInput">Email
+                        <p className="smallText">(Optional)</p>
+                    </label>
                     <input
                         type="text"
                         id="emailInput"
