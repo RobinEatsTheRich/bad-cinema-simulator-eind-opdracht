@@ -1,6 +1,7 @@
 //Import Packages
 import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
+import "./Highlights.css"
 
 //Import Components
 import HighlightPoster from "../../components/HighlightPoster/HighlightPoster";

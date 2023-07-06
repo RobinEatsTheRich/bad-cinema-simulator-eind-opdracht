@@ -140,7 +140,8 @@ function SignUp() {
 
             <h2>Create Account</h2>
             <article className="accountWindow">
-                <form onSubmit={handleSubmit(onFormSubmit)}>
+                <form onSubmit={handleSubmit(onFormSubmit)}
+                className="signUpForm">
                     <label htmlFor="iconInput"
                     className="iconInput">
                         Icon

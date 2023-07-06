@@ -1,6 +1,7 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
 import {Link, useNavigate} from "react-router-dom";
+import "./NavBar.css"
 
 
 //import components
@@ -20,7 +21,7 @@ function NavBar() {
 
     return (
         <nav>
-            <div className="navCenterpiece">
+            <div className="navCenterPiece">
                 <Logo/>
                 <form
                     className="searchBar"

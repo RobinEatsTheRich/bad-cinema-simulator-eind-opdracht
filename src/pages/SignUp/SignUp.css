@@ -10,7 +10,7 @@ root{
     box-shadow: 0 4px 0 10px #1C191A;
     padding: 10px 50px 10px 50px;
 }
-form{
+.signUpForm{
     display: flex;
     flex-direction: column;
 }

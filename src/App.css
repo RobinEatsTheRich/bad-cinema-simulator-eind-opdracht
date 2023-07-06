@@ -4,15 +4,15 @@
   border: none;
   outline: none;
   box-sizing: border-box;
+  margin: 0;
 
   /*placeholder:*/
   background-color: #1C191A;
-  margin: 5px;
 }
 
 /*placeholder:*/
 img{
-  height: 400px;
+  height: 300px;
 }
 
 /*/////////////--Typography--/////////////*/
@@ -33,10 +33,15 @@ p, label, button, input, a{
 
 
 /*/////////////--Global Elements--/////////////*/
+root{
+  margin: 0;
+}
 body{
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  margin: 0;
 }
 
 
@@ -48,4 +53,7 @@ input{
 }
 input:focus{
   background: #4d444a;
+}
+a{
+  text-decoration: none;
 }
