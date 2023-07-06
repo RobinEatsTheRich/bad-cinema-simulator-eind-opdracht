@@ -7,7 +7,29 @@ function Cinema() {
     const { id } = useParams();
     const { tmdbKey, rapidKey } = useContext(AccountContext)
     const [ movieData, setMovieData ] = useState([])
-    const [ reviewData, setReviewData ] = useState([])
+    const [ reviewData, setReviewData ] = useState([
+        //Temporary reviewData since my limit for the site is almost reached
+        {
+            "Title": "wow this sucks",
+            "text": "whatever"
+        },
+        {
+            "Title": "Actually I kinda like it?",
+            "text": "whatever"
+        },
+        {
+            "Title": "This truly changed my life",
+            "text": "whatever"
+        },
+        {
+            "Title": "bad",
+            "text": "whatever"
+        },
+        {
+            "Title": "I really hope the director is in therapy",
+            "text": "whatever"
+        }
+    ])
     let elementNumber = 0;
 
     //These are all the Reviews text bubbles
@@ -36,66 +58,75 @@ function Cinema() {
         void fetchMovieData();
     }, [tmdbKey, id]);
 
-    useEffect(() => {
-        const fetchOptions = {
-            method: 'GET',
-            url: `https://cinema-api.p.rapidapi.com/get_reviews/${movieData.imdb_id}`,
-            headers: {
-                'X-RapidAPI-Key': rapidKey,
-                'X-RapidAPI-Host': 'cinema-api.p.rapidapi.com'
-            }
-        }
-        async function fetchReviewData() {
-            try {
-                const result = await axios.request(fetchOptions);
-                setReviewData(result.data.data);
-            } catch (e) {
-                console.error(e);
-            }
-        }
-
-        void fetchReviewData();
-    }, [movieData, rapidKey, id]);
+    //This useEffect fetches the REAL reviews
+    // useEffect(() => {
+    //     const fetchOptions = {
+    //         method: 'GET',
+    //         url: `https://cinema-api.p.rapidapi.com/get_reviews/${movieData.imdb_id}`,
+    //         headers: {
+    //             'X-RapidAPI-Key': rapidKey,
+    //             'X-RapidAPI-Host': 'cinema-api.p.rapidapi.com'
+    //         }
+    //     }
+    //     async function fetchReviewData() {
+    //         try {
+    //             const result = await axios.request(fetchOptions);
+    //             setReviewData(result.data.data);
+    //         } catch (e) {
+    //             console.error(e);
+    //         }
+    //     }
+    //
+    //     void fetchReviewData();
+    // }, [movieData, rapidKey, id]);
 
 
     function setReview() {
         let randomHeckling = reviewData[Math.floor(Math.random() * reviewData.length)].Title
 
-        if (elementNumber >= 4) {
-            elementNumber = 0;
-        } else {
-            switch (elementNumber) {
-                case 0:
-                    console.log(elementNumber + " is:")
-                    console.log(randomHeckling)
-                    //setTextBubble1(randomHeckling)
-                    break;
-                case 1:
-                    console.log(elementNumber + " is:")
-                    console.log(randomHeckling)
-                    //setTextBubble2(randomHeckling)
-                    break;
-                case 2:
-                    console.log(elementNumber + " is:")
-                    console.log(randomHeckling)
-                    //setTextBubble3(randomHeckling)
-                    break;
-                case 3:
-                    console.log(elementNumber + " is:")
-                    console.log(randomHeckling)
-                    //setTextBubble4(randomHeckling)
-                    break;
-                default:
-                    break;
+        setTimeout(()=>{
+            if (elementNumber >= 4) {
+                elementNumber = 0;
+            } else {
+                switch (elementNumber) {
+                    case 0:
+                        console.log(elementNumber + " is:")
+                        console.log(randomHeckling)
+                        setTextBubble1(randomHeckling)
+                        break;
+                    case 1:
+                        console.log(elementNumber + " is:")
+                        console.log(randomHeckling)
+                        setTextBubble2(randomHeckling)
+                        break;
+                    case 2:
+                        console.log(elementNumber + " is:")
+                        console.log(randomHeckling)
+                        setTextBubble3(randomHeckling)
+                        break;
+                    case 3:
+                        console.log(elementNumber + " is:")
+                        console.log(randomHeckling)
+                        setTextBubble4(randomHeckling)
+                        break;
+                    default:
+                        break;
+                }
+                elementNumber++
             }
-            elementNumber++
-        }
-        setTimeout(setReview, (Math.random() * 12000 + 1000))
+        }, Math.random() * 20000 + 1000)
     }
 
-    if (Object.keys(reviewData).length > 0) {
-        setReview()
-    }
+    //Thank you Jordy for helping me out with this snippet!
+    useEffect(() => {
+        // interval for random movie tile every 10 seconds
+        const randomMovieTile = setInterval(() => {setReview()}, 2000)
+
+        // clear interval on unmount
+        return () => {
+            clearInterval(randomMovieTile)
+        }
+    }, [])
 
 
 

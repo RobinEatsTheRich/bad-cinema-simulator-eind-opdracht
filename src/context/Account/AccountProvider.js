@@ -21,6 +21,9 @@ function AccountContextProvider({ children }) {
     const [rapidKey, setRapidKey] = useState(
         "600a11d05emshc158f5b200c285cp1d59cfjsn9cc360e4d455"
     );
+    const [noviKey, setNoviKey] = useState(
+        ""
+    );
 
     const data = {
         accountData,
@@ -28,7 +31,9 @@ function AccountContextProvider({ children }) {
         tmdbKey,
         setTmdbKey,
         rapidKey,
-        setRapidKey
+        setRapidKey,
+        noviKey,
+        setNoviKey
     }
 
     return (

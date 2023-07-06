@@ -15,7 +15,7 @@ import Logo from "../../components/Logo/Logo";
 
 function SignUp() {
     const { register, handleSubmit, watch } = useForm();
-    const { accountData, setAccountData } = useContext(AccountContext)
+    const { setAccountData, noviKey, setNoviKey } = useContext(AccountContext)
     const [ canRegister, toggleCanRegister ] = useState(false)
     const navigate = useNavigate();
 
@@ -75,7 +75,7 @@ function SignUp() {
     function onFormSubmit(data) {
         const postData = {
             "username": data.username,
-            "password" : data.password,
+            "password": data.password,
             "info": (data.icon + data.snack),
             "email" : (
                 data.email ? data.email
@@ -85,23 +85,35 @@ function SignUp() {
         }
         console.log(postData)
 
-        const postOptions = {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer xxx.xxx.xxx",
-            }
-        }
         async function postToBackend() {
             try {
                 const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', postData);
                 console.log(result);
+                //void getToken();
             } catch (e) {
                 console.error(e);
             }
         }
 
+        // const postDataLogIn = {
+        //     "username": data.username,
+        //     "password": data.password
+        // }
+        // async function getToken() {
+        //     try {
+        //         const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin',postDataLogIn);
+        //
+        //         console.log("getToken is:")
+        //         console.log(result);
+        //         //setNoviKey(result)
+        //     } catch (e) {
+        //         console.error(e);
+        //     }
+        // }
         void postToBackend();
+
+
+
 
 
 
