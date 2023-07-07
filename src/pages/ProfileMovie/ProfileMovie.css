@@ -1,0 +1,11 @@
+.pageNoFrameMovie{
+    justify-self: center;
+    display: flex;
+    padding-top: 70px;
+}
+.bigPoster{
+    height: 91vh;
+    position: fixed;
+    left: 0;
+    top: 70px;
+}

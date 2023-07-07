@@ -40,18 +40,23 @@ function Highlights() {
     return (
         <>
             <NavBar/>
-            <h3>NOW IN CINEMAS</h3>
-            <article className="postersContainer">
-                <HighlightPoster movieData={popularMovieData[0]}/>
-                <HighlightPoster movieData={popularMovieData[1]}/>
-                <HighlightPoster movieData={popularMovieData[2]}/>
-                <HighlightPoster movieData={popularMovieData[3]}/>
-                <HighlightPoster movieData={popularMovieData[4]}/>
-                <HighlightPoster movieData={popularMovieData[5]}/>
-                <HighlightPoster movieData={popularMovieData[6]}/>
-                <HighlightPoster movieData={popularMovieData[7]}/>
-
-            </article>
+            <div className="pageFrame">
+                <h3>NOW IN CINEMAS</h3>
+                <article className="postersContainer">
+                    <div className="row">
+                        <HighlightPoster movieData={popularMovieData[0]}/>
+                        <HighlightPoster movieData={popularMovieData[1]}/>
+                        <HighlightPoster movieData={popularMovieData[2]}/>
+                        <HighlightPoster movieData={popularMovieData[3]}/>
+                    </div>
+                    <div className="row">
+                        <HighlightPoster movieData={popularMovieData[4]}/>
+                        <HighlightPoster movieData={popularMovieData[5]}/>
+                        <HighlightPoster movieData={popularMovieData[6]}/>
+                        <HighlightPoster movieData={popularMovieData[7]}/>
+                    </div>
+                </article>
+            </div>
         </>
     );
 }

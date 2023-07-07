@@ -2,14 +2,15 @@ import React, {createContext, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import Button from "../../components/Button/Button";
 
-export const confirmContext = createContext(null);
+export const newWindowContext = createContext(null);
 
-function ConfirmWindowContextProvider({ children }) {
+function NewWindowContextProvider({ children }) {
 
     const [confirmWindow, setConfirmWindow] = useState(<></>);
     const navigate = useNavigate();
 
     function PlaceConfirmWindow( movieData ) {
+        console.log("hey I'm doing something")
         setConfirmWindow(
             <>
                 <article className="confirmWindow">
@@ -41,10 +42,10 @@ function ConfirmWindowContextProvider({ children }) {
     }
 
     return (
-        <confirmContext.Provider value={data}>
+        <newWindowContext.Provider value={data}>
             {children}
-        </confirmContext.Provider>
+        </newWindowContext.Provider>
     )
 }
 
-export default ConfirmWindowContextProvider;
+export default NewWindowContextProvider;

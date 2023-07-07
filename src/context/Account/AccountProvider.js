@@ -1,16 +1,18 @@
 import React, {createContext, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
 export const AccountContext = createContext(null);
 
 function AccountContextProvider({ children }) {
 
+    const navigate = useNavigate();
     const [accountData, setAccountData] = useState({
-        auth: true,
+        auth: false,
         userData: {
-            alias: "",
+            alias: "Guest",
             password: "",
-            iconId: "",
-            snackId: "",
+            iconId: 4,
+            snackId: 4,
             email: ""
         }
     })
@@ -25,6 +27,21 @@ function AccountContextProvider({ children }) {
         ""
     );
 
+    function logOut(){
+        setAccountData({
+            auth: false,
+            userData: {
+                alias: "Guest",
+                password: "",
+                iconId: 4,
+                snackId: 4,
+                email: ""
+            }
+        })
+        setNoviKey("")
+        navigate("/")
+    }
+
     const data = {
         accountData,
         setAccountData,
@@ -33,7 +50,8 @@ function AccountContextProvider({ children }) {
         rapidKey,
         setRapidKey,
         noviKey,
-        setNoviKey
+        setNoviKey,
+        logOut
     }
 
     return (

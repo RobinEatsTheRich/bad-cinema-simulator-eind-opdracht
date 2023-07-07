@@ -1,25 +1,28 @@
-Link{
+.logo{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 40px;
 }
 
-h2{
+.logoText{
     text-align: center;
     font-family: Limelight, serif;
-    font-size: 44px;
+    font-size: 36px;
     font-weight: 400;
-    height: 44px;
+    letter-spacing: 7px;
+    height: 36px;
+    margin-left: 5px;
 }
-h2:hover{
+.logoText:hover{
     color: #f4d34a;
 }
-h2:active{
+.logoText:active{
      color: white;
  }
 
 p{
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
 }

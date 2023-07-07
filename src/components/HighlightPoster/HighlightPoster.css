@@ -1,0 +1,14 @@
+.highLightPoster{
+    margin-bottom: 20px;
+    width:  175px;
+}
+.highLightPoster p{
+    overflow-wrap: normal;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.highLightPoster figure{
+    border: 2px solid white;
+    height: 260px;
+}

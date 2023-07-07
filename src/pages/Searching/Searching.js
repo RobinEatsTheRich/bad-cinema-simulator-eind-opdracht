@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 
 //Import context
-import {confirmContext} from "../../context/ConfirmWindowProvider/ConfirmWindowProvider";
+import {newWindowContext} from "../../context/newWindowProvider/newWindowProvider";
 import {AccountContext} from "../../context/Account/AccountProvider";
 
 //Import components
@@ -16,7 +16,7 @@ import Button from "../../components/Button/Button";
 
 function Searching() {
     const { id } = useParams();
-    const { confirmWindow } = useContext(confirmContext)
+    const { confirmWindow } = useContext(newWindowContext)
     const { tmdbKey } = useContext(AccountContext)
 
     const [ searchData, setSearchData ] = useState([])
@@ -79,19 +79,19 @@ function Searching() {
         <>
             <NavBar/>
             { searchData[0] &&
-                <>
+                <div className="pageFrame">
                     {confirmWindow}
                     <h3>SEARCH RESULTS FOR <strong>"{ id.toUpperCase() }"</strong></h3>
                     <Button
                         onClick={() =>
-                        setQueryType(toggleQueryType())}
-                        >
+                            setQueryType(toggleQueryType())}
+                    >
                         {toggleButtonText()}
                     </Button>
                     <article>
                         {renderElement}
                     </article>
-                </>
+                </div>
             }
         </>
     );

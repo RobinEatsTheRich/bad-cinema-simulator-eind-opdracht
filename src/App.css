@@ -5,14 +5,12 @@
   outline: none;
   box-sizing: border-box;
   margin: 0;
-
-  /*placeholder:*/
-  background-color: #1C191A;
+  background: none;
 }
 
 /*placeholder:*/
-img{
-  height: 300px;
+figure{
+  height: 150px;
 }
 
 /*/////////////--Typography--/////////////*/
@@ -24,26 +22,50 @@ h1, h2, h3{
 p, label, button, input, a{
   color: white;
   font-family: "Roboto Condensed", serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: lighter;
 }
 .smallText{
   font-size: 10px;
 }
-
+.errorMessage{
+  color: #c63c60;
+}
+.accentText{
+  color: #FFBF1B;
+}
 
 /*/////////////--Global Elements--/////////////*/
-root{
+#root{
   margin: 0;
-}
-body{
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+body{
+  background-color: #1C191A;
   width: 100%;
   margin: 0;
 }
-
+.pageFrame{
+  width: 55%;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+}
+.pageNoFrame{
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+}
 
 input{
   height: 25px;
@@ -52,8 +74,11 @@ input{
   padding-left: 15px;
 }
 input:focus{
-  background: #4d444a;
+  background: #443c41;
 }
 a{
   text-decoration: none;
+}
+img{
+  height: 100%
 }

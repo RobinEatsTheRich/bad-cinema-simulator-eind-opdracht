@@ -1,9 +1,10 @@
 //Import packages
 import React, {useContext, useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
+import "./ProfileMovie.css"
 
 //Import Context
-import {confirmContext} from "../../context/ConfirmWindowProvider/ConfirmWindowProvider";
+import {newWindowContext} from "../../context/newWindowProvider/newWindowProvider";
 
 //Import components
 import Button from "../../components/Button/Button";
@@ -15,7 +16,7 @@ import {AccountContext} from "../../context/Account/AccountProvider";
 
 function ProfileMovie() {
     const { id } = useParams();
-    const { confirmWindow, PlaceConfirmWindow } = useContext(confirmContext)
+    const { confirmWindow, PlaceConfirmWindow } = useContext(newWindowContext)
     const { tmdbKey } = useContext(AccountContext)
     const [ movieData, setMovieData ] = useState([])
     const [ castData, setCastData ] = useState([])
@@ -49,17 +50,24 @@ function ProfileMovie() {
         void fetchCastData();
     }, [tmdbKey, id]);
 
+    useEffect(()=>{
+        console.log(movieData)
+    },[movieData])
+
     return (
         <>
             <NavBar/>
             { movieData.poster_path && castData.cast &&
-                <>
+                <div className="pageNoFrameMovie">
                     {confirmWindow}
-                    <img src={`https://www.themoviedb.org/t/p/original/${movieData.poster_path}`}
-                         alt={`The poster for ${movieData.original_title}`}/>
-                    <article>
+                    <figure className="bigPoster">
+                        <img src={`https://www.themoviedb.org/t/p/original/${movieData.poster_path}`}
+                             alt={`The poster for ${movieData.title}`}
+                        />
+                    </figure>
+                    <article className="restOfPage">
                         <div className="titleAndYear">
-                            <h1>{movieData.original_title.toUpperCase()}</h1>
+                            <h1>{movieData.title.toUpperCase()}</h1>
                             <p>{movieData.release_date.slice(0, 4)}</p>
                         </div>
                         <div className="castField">
@@ -99,10 +107,10 @@ function ProfileMovie() {
                         <Button
                             onClick={() => {PlaceConfirmWindow(movieData)}}
                         >
-                            <img src="" alt="Watch Button"/>
+                            <img src="" alt="Watch"/>
                         </Button>
                     </article>
-                </>
+                </div>
             }
         </>
     );

@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 
 //Import Context
-import {confirmContext} from "../../context/ConfirmWindowProvider/ConfirmWindowProvider";
+import {newWindowContext} from "../../context/newWindowProvider/newWindowProvider";
 
 //Import Components
 import NavBar from "../../components/NavBar/NavBar";
@@ -15,7 +15,7 @@ import {AccountContext} from "../../context/Account/AccountProvider";
 
 function ProfileCast() {
     const { id } = useParams();
-    const { confirmWindow } = useContext(confirmContext)
+    const { confirmWindow } = useContext(newWindowContext)
     const { tmdbKey } = useContext(AccountContext)
     const [ castData, setCastData ] = useState([])
     const [ creditData, setCreditData ] = useState([])
@@ -64,7 +64,8 @@ function ProfileCast() {
         <>
             <NavBar/>
             { castData.name && creditData &&
-                <>
+
+                <div className="pageFrame">
                     {confirmWindow}
                     <figure className="icon">
                         <img
@@ -84,8 +85,7 @@ function ProfileCast() {
                             />
                         )}
                     </div>
-
-                </>
+                </div>
             }
         </>
     );

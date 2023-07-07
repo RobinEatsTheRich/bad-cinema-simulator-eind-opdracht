@@ -5,8 +5,9 @@ function Logo() {
 
 
     return (
-        <Link to="/highlights">
-            <h2>B C S</h2>
+        <Link to="/highlights"
+        className="logo">
+            <h2 className="logoText" >BCS</h2>
             <p>Bad Cinema Simulator</p>
         </Link>
     );

@@ -1,14 +1,15 @@
 .buttonComponent{
-    border-radius: 20px;
-    border: 3px solid #FFBF1B;
+    border-radius: 15px;
+    border: 2px solid #FFBF1B;
     background: #353134;
     box-shadow: 0 4px 0 10px #1C191A;
     padding: 10px 50px 10px 50px;
+    margin: 5px 0 5px 0;
 
-    font-size: 20px;
+    font-size: 15px;
 }
 .buttonComponent:hover{
-    background: #4d444a;
+    background: #443c41;
 }
 .buttonComponent:active{
     border: 3px solid white;

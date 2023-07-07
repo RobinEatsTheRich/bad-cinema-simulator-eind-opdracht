@@ -11,20 +11,21 @@ import {AccountContext} from "../../context/Account/AccountProvider";
 //Import components
 import Button from "../../components/Button/Button";
 import Logo from "../../components/Logo/Logo";
+import logo from "../../components/Logo/Logo";
 
 
 function SignUp() {
     const { register, handleSubmit, watch } = useForm();
-    const { setAccountData, noviKey, setNoviKey } = useContext(AccountContext)
-    const [ canRegister, toggleCanRegister ] = useState(false)
-    const navigate = useNavigate();
+    const { accountData, setAccountData, setNoviKey } = useContext(AccountContext);
+    const [ errorMessage, setErrorMessage ] = useState("");
+    //This can stop our elements from being rendered on the mounting phase
+    const [firstRender, toggleFirstRender] = useState(true);
+    const [ canRegister, toggleCanRegister ] = useState(false);
 
-    //This is necessary to make sure the Submit button is disabled if username & password are not filled.
     const watchUsername = watch('username');
     const watchPassword = watch('password');
     const watchEmail = watch('email');
-    //This can stop our elements from being rendered on the mounting phase
-    const [firstRender, toggleFirstRender] = useState(true);
+    const navigate = useNavigate();
 
     //Boot up the NOVI Backend in case it's in sleepmode.
     useEffect(() => {
@@ -37,9 +38,9 @@ function SignUp() {
         async function testBackend() {
             try {
                 const result = await axios.get('https://frontend-educational-backend.herokuapp.com/api/test/all', fetchOptions);
-                console.log(result);
             } catch (e) {
                 console.error(e);
+                decodeError(e)
             }
         }
 
@@ -67,81 +68,71 @@ function SignUp() {
 
     },[ watchUsername, watchPassword, watchEmail ])
 
-    useEffect( () => {
-        console.log("canRegister is " + canRegister)
-    },[ canRegister])
-
 
     function onFormSubmit(data) {
         const postData = {
             "username": data.username,
             "password": data.password,
             "info": (data.icon + data.snack),
+            //Ethically I believe that websites always asking for emails is a sign of eroding personal agency, so I want entering your email to be optional.
+            //If the person doesn't want to share this data, I just randomly generate a new email for them to satisfy the backend.
             "email" : (
                 data.email ? data.email
-                    : "@"
+                    : `${Math.floor(Math.random() * 99999)}@email.com`
             ),
             "role": ["user"]
         }
-        console.log(postData)
 
         async function postToBackend() {
             try {
                 const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', postData);
-                console.log(result);
-                //void getToken();
+                void getToken();
             } catch (e) {
                 console.error(e);
+                decodeError(e)
             }
         }
 
-        // const postDataLogIn = {
-        //     "username": data.username,
-        //     "password": data.password
-        // }
-        // async function getToken() {
-        //     try {
-        //         const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin',postDataLogIn);
-        //
-        //         console.log("getToken is:")
-        //         console.log(result);
-        //         //setNoviKey(result)
-        //     } catch (e) {
-        //         console.error(e);
-        //     }
-        // }
+        const postDataLogIn = {
+            "username": data.username,
+            "password": data.password
+        }
+        async function getToken() {
+            try {
+                const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin',postDataLogIn);
+                setNoviKey(result.data.accessToken)
+                setAccountData({
+                    auth: true,
+                    userData: {
+                        alias: result.data.username,
+                        password: data.password,
+                        iconId: data.icon,
+                        snackId: data.snack,
+                        email: result.data.email
+                    }})
+                navigate('/highlights')
+            } catch (e) {
+                console.error(e);
+                decodeError(e)
+            }
+        }
         void postToBackend();
+    }
 
-
-
-
-
-
-
-        setAccountData({
-            auth: true,
-            userData: {
-                alias: data.username,
-                password: data.password,
-                iconId: data.icon,
-                snackId: data.snack,
-                email: (
-                    data.password ? data.password
-                        : null
-                )
-            }})
-
-        //navigate('/highlights')
+    function decodeError(e){
+        e.response.data.message ?
+            setErrorMessage(e.response.data.message)
+            :
+            setErrorMessage("Please check email validity")
     }
 
     return (
         <>
             <Logo/>
-
-            <h2>Create Account</h2>
             <article className="accountWindow">
+                <h2 className="formHeader">Create Account</h2>
                 <form onSubmit={handleSubmit(onFormSubmit)}
-                className="signUpForm">
+                className="signForm">
                     <label htmlFor="iconInput"
                     className="iconInput">
                         Icon
@@ -249,14 +240,23 @@ function SignUp() {
                         id="emailInput"
                         {...register("email")}
                     />
+                    <p className="errorMessage">{errorMessage}</p>
+                    <div className="otherRoutes">
+                        <Link
+                            className="softButton"
+                            to="/sign_in">
+                            Log in instead</Link>
+                        <Link
+                            className="softButton"
+                            to="/highlights">
+                            Continue as guest</Link>
+                    </div>
                     <Button
                         buttonType="submit"
                         onSubmit={handleSubmit}
                         isDisabled={!canRegister}
                     >Okay!</Button>
                 </form>
-                <Link to="/sign_in">Log in instead</Link>
-                <Link to="/highlights">Continue as guest</Link>
             </article>
         </>
     );
