@@ -1,0 +1,13 @@
+.castHeader{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 30px 0 30px 0;
+}
+.icon{
+    height: 300px;
+    border-radius: 4px;
+    border: 2px solid white;
+    background: white;
+    margin-right: 15px;
+}

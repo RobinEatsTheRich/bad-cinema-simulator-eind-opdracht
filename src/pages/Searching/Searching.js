@@ -2,6 +2,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import "./Searching.css"
 
 //Import context
 import {newWindowContext} from "../../context/newWindowProvider/newWindowProvider";
@@ -83,12 +84,13 @@ function Searching() {
                     {confirmWindow}
                     <h3>SEARCH RESULTS FOR <strong>"{ id.toUpperCase() }"</strong></h3>
                     <Button
+                        className="softButtonWhite"
                         onClick={() =>
                             setQueryType(toggleQueryType())}
                     >
                         {toggleButtonText()}
                     </Button>
-                    <article>
+                    <article className="resultsContainer">
                         {renderElement}
                     </article>
                 </div>

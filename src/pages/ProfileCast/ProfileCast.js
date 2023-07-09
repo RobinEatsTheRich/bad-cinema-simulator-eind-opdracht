@@ -1,6 +1,7 @@
 //Import packages
 import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
+import "./ProfileCast.css"
 
 //Import Context
 import {newWindowContext} from "../../context/newWindowProvider/newWindowProvider";
@@ -19,6 +20,7 @@ function ProfileCast() {
     const { tmdbKey } = useContext(AccountContext)
     const [ castData, setCastData ] = useState([])
     const [ creditData, setCreditData ] = useState([])
+    const [ errorMessage, setErrorMessage ] = useState("")
 
     useEffect(() => {
         const fetchOptions = {
@@ -34,6 +36,7 @@ function ProfileCast() {
                 setCastData(result.data);
             } catch (e) {
                 console.error(e);
+                setErrorMessage(e)
             }
         }
         async function fetchCreditData() {
@@ -53,6 +56,7 @@ function ProfileCast() {
                 setCreditData(result.data.cast);
             } catch (e) {
                 console.error(e);
+                setErrorMessage(e)
             }
         }
 
@@ -67,16 +71,17 @@ function ProfileCast() {
 
                 <div className="pageFrame">
                     {confirmWindow}
-                    <figure className="icon">
-                        <img
-                            src={`https://image.tmdb.org/t/p/original${castData.profile_path}`}
-                            alt={`A profile picture of ${castData.name}`}/>
-                    </figure>
-                    {/*I'm using this strange classname because the layout is identical to similarly named classes, saving in complexity*/}
-                    <div className="titleAndYear">
-                        <h1>{castData.name}</h1>
-                        <p>Stars in:</p>
-                    </div>
+                    <header className="castHeader">
+                        <figure className="icon">
+                            <img
+                                src={`https://image.tmdb.org/t/p/original${castData.profile_path}`}
+                                alt={`A profile picture of ${castData.name}`}/>
+                        </figure>
+                        <div className="titleAndYear">
+                            <h1>{castData.name.toUpperCase()}</h1>
+                            <h2>Stars in:</h2>
+                        </div>
+                    </header>
                     <div className="searchResults">
                         {creditData.map((movie) =>
                             <SearchResult

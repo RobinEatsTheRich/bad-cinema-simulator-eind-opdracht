@@ -2,10 +2,38 @@
     justify-self: center;
     display: flex;
     padding-top: 70px;
+    padding-left: 480px;
+    width: 100%;
 }
 .bigPoster{
     height: 91vh;
     position: fixed;
     left: 0;
     top: 70px;
+}
+
+.restOfPage{
+    padding: 80px 0 100px 0;
+}
+
+.castField{
+    margin-top: 30px;
+    width: 80%;
+}
+.castList{
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.castListItem{
+    list-style-type: none;
+    padding: 5px 15px 5px 15px;
+    border-radius: 20px;
+    background: #353134;
+}
+
+.restOfPage .buttonComponent{
+    margin-top: 50px;
+    box-shadow: none;
 }

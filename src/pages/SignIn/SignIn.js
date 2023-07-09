@@ -2,7 +2,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
-import "./SignIn.css";
 
 //Import Context
 
@@ -55,13 +54,14 @@ function SignIn() {
             try {
                 const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin',postData);
                 setNoviKey(result.data.accessToken)
+                console.log(result)
                 setAccountData({
                     auth: true,
                     userData: {
                         alias: result.data.username,
                         password: data.password,
-                        iconId: data.icon,
-                        snackId: data.snack,
+                        iconId: accountData.iconId,
+                        snackId: accountData.iconId,
                         email: result.data.email
                     }})
                 navigate('/highlights')

@@ -1,6 +1,7 @@
 import React, {createContext, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import Button from "../../components/Button/Button";
+import"./newWindowProvider.css"
 
 export const newWindowContext = createContext(null);
 
@@ -12,26 +13,28 @@ function NewWindowContextProvider({ children }) {
     function PlaceConfirmWindow( movieData ) {
         console.log("hey I'm doing something")
         setConfirmWindow(
-            <>
+            <div className="confirmWindowContainer">
                 <article className="confirmWindow">
-                    <h2>Watch this movie?</h2>
-                    <figure>
+                    <h2 className="formHeader" >Watch this movie?</h2>
+                    <figure className= {movieData.poster_path ? "searchPoster" : "noPoster"}>
                         <img src={`https://www.themoviedb.org/t/p/original/${movieData.poster_path}`}
-                             alt={`The poster for ${movieData.original_title}`}/>
+                             alt={`${movieData.title}`}/>
                     </figure>
-                    <Button
-                        onClick={() => setConfirmWindow(<></>)}
-                    >
-                        <img src="" alt="X"/>
-                    </Button>
-                    <Button
-                        onClick={() => navigate(`/cinema/${movieData.id}`)}
-                    >
-                        Okay!
-                    </Button>
+                    <div className="buttonRow">
+                        <Button
+                            onClick={() => setConfirmWindow(<></>)}
+                        >
+                            <img src="" alt="X"/>
+                        </Button>
+                        <Button
+                            onClick={() => navigate(`/cinema/${movieData.id}`)}
+                        >
+                            Okay!
+                        </Button>
+                    </div>
                 </article>
                 <div className="shadow"/>
-            </>
+            </div>
         );
     }
 

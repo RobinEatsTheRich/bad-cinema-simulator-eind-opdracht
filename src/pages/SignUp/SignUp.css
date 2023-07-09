@@ -12,11 +12,13 @@ root{
     padding: 30px 50px 30px 50px;
 }
 .formHeader{
-    margin-top: -57px;
+    margin-top: -40px;
     margin-left: -10px;
     position: absolute;
     background: #1C191A;
-    color: white;
+    line-height: 0;
+    height: 0;
+
     padding: 10px;
 }
 .signForm{
@@ -44,20 +46,21 @@ label{
     border: 2px solid #FFBF1B;
     background: #353134;
 }
+
+input{
+    height: 25px;
+    border-radius: 20px;
+    background: #353134;
+    padding-left: 15px;
+}
+input:focus{
+    background: #443c41;
+}
+
 .otherRoutes{
     display: flex;
     gap: 20px;
 }
-
-.softButton{
-    color: #FFBF1B;
-}
-.softButton:hover{
-    color: #f4d34a;
-}
-.softButton:active{
-     color: white;
- }
 
 .signForm button{
     margin-left: auto;

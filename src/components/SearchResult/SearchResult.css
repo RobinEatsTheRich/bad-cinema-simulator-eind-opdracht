@@ -1,3 +1,46 @@
+
+.searchResult{
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+}
+.movieLink{
+    border-radius: 15px 0 0 15px;
+    border: 2px solid #FFBF1B;
+    border-right: none;
+    background: #1C191A;
+    padding: 15px;
+    width: 100%;
+
+    display: flex;
+}
+.searchPoster {
+    height: 150px;
+    border-radius: 3px;
+    margin-right: 15px;
+ }
 .searchPoster img{
-    height: 250px;
+    border: 2px solid white;
+    background: white;
+}
+.noPoster {
+    width: 100px;
+    margin-right: 15px;
+}
+
+.titleAndYear h2{
+    color: white;
+    font-weight: lighter;
+}
+
+.castSearchResult{
+    border-radius: 15px;
+    border: 2px solid #FFBF1B;
+    background: #1C191A;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
 }
