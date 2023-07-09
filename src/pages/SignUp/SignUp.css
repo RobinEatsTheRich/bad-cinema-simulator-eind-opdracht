@@ -1,0 +1,68 @@
+root{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accountWindow{
+    width: 33%;
+    border-radius: 20px;
+    border: 3px solid #FFBF1B;
+    box-shadow: 0 4px 0 10px #1C191A;
+    padding: 30px 50px 30px 50px;
+}
+.formHeader{
+    margin-top: -40px;
+    margin-left: -10px;
+    position: absolute;
+    background: #1C191A;
+    line-height: 0;
+    height: 0;
+
+    padding: 10px;
+}
+.signForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+label{
+    display: flex;
+    flex-direction: row;
+}
+.iconInput, .snackInput{
+    display: flex;
+    flex-direction: column;
+}
+.options{
+    display: flex;
+    justify-content: space-between;
+}
+
+.radioIcon{
+    width: 70px;
+    height: 70px;
+
+    border: 2px solid #FFBF1B;
+    background: #353134;
+}
+
+input{
+    height: 25px;
+    border-radius: 20px;
+    background: #353134;
+    padding-left: 15px;
+}
+input:focus{
+    background: #443c41;
+}
+
+.otherRoutes{
+    display: flex;
+    gap: 20px;
+}
+
+.signForm button{
+    margin-left: auto;
+    margin-bottom: -50px;
+}

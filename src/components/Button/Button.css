@@ -1,0 +1,48 @@
+.buttonComponent{
+    border-radius: 15px;
+    border: 2px solid #FFBF1B;
+    background: #353134;
+    box-shadow: 0 -10px 0 5px #1C191A;
+    padding: 10px 30px 10px 30px;
+    margin: 5px 0 5px 0;
+
+    font-size: 20px;
+}
+.buttonComponent:hover{
+    background: #443c41;
+}
+.buttonComponent:active{
+    border: 3px solid white;
+ }
+.buttonComponent:disabled{
+    background: #1C191A;
+    border: 3px solid #353134;
+    color: #353134;
+}
+.searchResultWatchButton{
+    border-radius: 0 15px 15px 0;
+    border: 2px solid #FFBF1B;
+    background: #353134;
+    padding: 15px;
+}
+.softButton{
+    color: #FFBF1B;
+}
+.softButton:hover{
+    color: #f4d34a;
+    cursor: pointer;
+}
+.softButton:active{
+    color: white;
+}
+
+.softButtonWhite{
+    color: white;
+}
+.softButtonWhite:hover{
+    color: #dddddd;
+    cursor: pointer;
+}
+.softButtonWhite:active{
+    color: white;
+}

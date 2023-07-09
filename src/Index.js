@@ -5,8 +5,9 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import App from './App';
 
 //Import Context
-import ConfirmWindowContextProvider from "./context/ConfirmWindowProvider/ConfirmWindowProvider";
+import ConfirmWindowContextProvider from "./context/newWindowProvider/newWindowProvider";
 import AccountContextProvider from "./context/Account/AccountProvider";
+import NewWindowContextProvider from "./context/newWindowProvider/newWindowProvider";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -14,9 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Router>
         <AccountContextProvider>
-            <ConfirmWindowContextProvider>
+            <NewWindowContextProvider>
                 <App/>
-            </ConfirmWindowContextProvider>
+            </NewWindowContextProvider>
         </AccountContextProvider>
     </Router>
 );

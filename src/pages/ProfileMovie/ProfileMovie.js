@@ -1,9 +1,10 @@
 //Import packages
 import React, {useContext, useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
+import "./ProfileMovie.css"
 
 //Import Context
-import {confirmContext} from "../../context/ConfirmWindowProvider/ConfirmWindowProvider";
+import {newWindowContext} from "../../context/newWindowProvider/newWindowProvider";
 
 //Import components
 import Button from "../../components/Button/Button";
@@ -15,8 +16,8 @@ import {AccountContext} from "../../context/Account/AccountProvider";
 
 function ProfileMovie() {
     const { id } = useParams();
-    const { confirmWindow, PlaceConfirmWindow } = useContext(confirmContext)
-    const { apiKey } = useContext(AccountContext)
+    const { confirmWindow, PlaceConfirmWindow } = useContext(newWindowContext)
+    const { tmdbKey } = useContext(AccountContext)
     const [ movieData, setMovieData ] = useState([])
     const [ castData, setCastData ] = useState([])
 
@@ -25,7 +26,7 @@ function ProfileMovie() {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${apiKey}`
+                Authorization: `Bearer ${tmdbKey}`
             }
         }
         async function fetchMovieData() {
@@ -47,61 +48,72 @@ function ProfileMovie() {
 
         void fetchMovieData();
         void fetchCastData();
-    }, [apiKey, id]);
+    }, [tmdbKey, id]);
+
+    useEffect(()=>{
+        console.log(movieData)
+    },[movieData])
 
     return (
         <>
             <NavBar/>
-            { movieData.poster_path && castData.cast &&
+            { movieData.title && castData.cast &&
                 <>
                     {confirmWindow}
-                    <img src={`https://www.themoviedb.org/t/p/original/${movieData.poster_path}`}
-                         alt={`The poster for ${movieData.original_title}`}/>
-                    <article>
-                        <div className="titleAndYear">
-                            <h1>{movieData.original_title.toUpperCase()}</h1>
-                            <p>{movieData.release_date.slice(0, 4)}</p>
-                        </div>
-                        <div className="castField">
-                            <p>Directed by:</p>
-                            <ul>
-                                {castData.crew.map((castMember) =>
-                                    {
-                                        if(castMember.job === "Director"){
-                                            return(
-                                            <li
-                                                key={`cast_${castMember.id}`}
-                                            >
-                                                <Link to={`/profile_cast/${castMember.id}`}>
-                                                    {castMember.name}
-                                                </Link>
-                                            </li>
-                                            )
+                    <div className="pageNoFrameMovie">
+                        <figure className="bigPoster">
+                            <img src={`https://www.themoviedb.org/t/p/original/${movieData.poster_path}`}
+                                 alt=""
+                            />
+                        </figure>
+                        <article className="restOfPage">
+                            <div className="titleAndYear">
+                                <h1>{movieData.title.toUpperCase()}</h1>
+                                <h2>{movieData.release_date.slice(0, 4)}</h2>
+                            </div>
+                            <div className="castField">
+                                <h2>Directed by:</h2>
+                                <ul className="castList">
+                                    {castData.crew.map((castMember) =>
+                                        {
+                                            if(castMember.job === "Director"){
+                                                return(
+                                                <li
+                                                    className="castListItem"
+                                                    key={`cast_${castMember.id}`}
+                                                >
+                                                    <Link to={`/profile_cast/${castMember.id}`}>
+                                                        {castMember.name}
+                                                    </Link>
+                                                </li>
+                                                )
+                                            }
                                         }
-                                    }
-                                )}
-                            </ul>
-                        </div>
-                        <div className="castField">
-                            <p>Cast:</p>
-                            <ul>
-                                {castData.cast.map((castMember) =>
-                                    <li
-                                    key={`cast_${castMember.id}`}
-                                    >
-                                        <Link to={`/profile_cast/${castMember.id}`}>
-                                            {castMember.name}
-                                        </Link>
-                                    </li>
-                                )}
-                            </ul>
-                        </div>
-                        <Button
-                            onClick={() => {PlaceConfirmWindow(movieData)}}
-                        >
-                            <img src="" alt="Watch Button"/>
-                        </Button>
-                    </article>
+                                    )}
+                                </ul>
+                            </div>
+                            <div className="castField">
+                                <h2>Cast:</h2>
+                                <ul className="castList">
+                                    {castData.cast.map((castMember) =>
+                                        <li
+                                            className="castListItem"
+                                            key={`cast_${castMember.id}`}
+                                        >
+                                            <Link to={`/profile_cast/${castMember.id}`}>
+                                                {castMember.name}
+                                            </Link>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
+                            <Button
+                                onClick={() => {PlaceConfirmWindow(movieData)}}
+                            >
+                                <img src="" alt="Watch"/>
+                            </Button>
+                        </article>
+                    </div>
                 </>
             }
         </>

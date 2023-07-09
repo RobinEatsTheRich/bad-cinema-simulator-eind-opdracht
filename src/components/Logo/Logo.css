@@ -1,0 +1,28 @@
+.logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+}
+
+.logoText{
+    text-align: center;
+    font-family: Limelight, serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 7px;
+    height: 36px;
+    margin-left: 5px;
+}
+.logoText:hover{
+    color: #f4d34a;
+}
+.logoText:active{
+     color: white;
+ }
+
+p{
+    text-align: center;
+    font-size: 10px;
+}

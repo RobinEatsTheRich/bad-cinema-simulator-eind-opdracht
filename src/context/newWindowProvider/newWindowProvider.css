@@ -1,0 +1,61 @@
+.confirmWindowContainer{
+    justify-self: start;
+    width: 99vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shadow{
+    position: fixed;
+    justify-self: start;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1C191A;
+    opacity: 90%;
+    z-index:80;
+}
+
+.confirmWindow{
+    position: fixed;
+    z-index:90;
+
+    background-color: #1C191A;
+    border-radius: 20px;
+    border: 3px solid #FFBF1B;
+    padding: 40px 20px 20px 20px;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.15));
+
+    display: flex;
+    flex-direction: column;
+}
+.confirmWindow .formHeader{
+    margin-top: -50px;
+}
+.confirmWindow .searchPoster{
+    height: 400px;
+    align-self: center;
+    margin-right: 0;
+    margin-bottom: 20px;
+}
+.confirmWindow .noPoster{
+    align-self: center;
+    margin: 0 30px 20px 30px;
+    width: auto;
+    height: auto;
+
+    color: #FFBF1B;
+    font-family: "Roboto Condensed", serif;
+    font-weight: Normal;
+    font-size: 30px;
+}
+.buttonRow {
+    margin-bottom: -10px;
+    display: flex;
+    justify-content: space-between;
+}
+.buttonRow .buttonComponent{
+    margin-bottom: -40px;
+}

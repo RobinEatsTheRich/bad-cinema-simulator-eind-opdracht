@@ -1,0 +1,16 @@
+.pageFrame h3{
+    margin: 15px 0 15px 0;
+}
+
+.postersContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

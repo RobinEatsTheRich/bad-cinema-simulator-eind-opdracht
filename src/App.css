@@ -1,3 +1,88 @@
+/*/////////////--CSS RESET--/////////////*/
+*{
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  margin: 0;
+  background: none;
+}
+
+/*placeholder:*/
+figure{
+  height: 150px;
+}
+
+/*/////////////--Typography--/////////////*/
+h1, h2, h3{
+  color: #FFBF1B;
+  font-family: "Roboto Condensed", serif;
+  font-weight: Normal;
+}
+h1{
+  font-size: 30px;
+}
+h2{
+  font-size: 25px;
+  color: white;
+  font-weight: lighter;
+}
+h3{
+  font-size: 15px;
+}
+
+p, label, button, input, a{
+  color: white;
+  font-family: "Roboto Condensed", serif;
+  font-size: 16px;
+  font-weight: lighter;
+}
+.smallText{
+  font-size: 10px;
+}
+.errorMessage{
+  color: #c63c60;
+}
+.accentText{
+  color: #FFBF1B;
+}
+
+/*/////////////--Global Elements--/////////////*/
+#root{
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+body{
+  background-color: #1C191A;
+  width: 100%;
+  margin: 0;
+}
+.pageFrame{
+  width: 55%;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+}
+.pageNoFrame{
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+}
+
+a{
+  text-decoration: none;
+}
 img{
-  height: 400px;
+  height: 100%;
+  border-radius: 3px;
 }

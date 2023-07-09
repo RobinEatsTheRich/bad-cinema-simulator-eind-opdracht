@@ -1,0 +1,104 @@
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    z-index:100;
+
+    border-bottom: 2px solid #FFBF1B;
+    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.25));
+    background: #1C191A;
+
+    padding: 0 50px 0 200px;
+}
+.navCenterPiece{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+.navCenterPiece .logo{
+    margin: 0 20px 0 0;
+}
+
+.searchBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    flex-grow: 1;
+
+    height: 25px;
+    width: 725px;
+    border-radius: 20px;
+    background: #353134;
+    padding: 15px;
+}
+.searchBar:focus-within{
+     background: #443c41;
+ }
+/*input Reset because we want to apply the effect on the entire form*/
+.searchBar input {
+    border-radius: 0;
+    background: none;
+    width: 100%;
+    padding: 10px;
+}
+.searchBar input:focus{
+    background: none;
+}
+
+.separatorLine{
+    background: #FFBF1B;
+    width: 1px;
+    height: 20px;
+    margin-right: 15px;
+}
+
+/*/////////////////-small Account window things-/////////////////*/
+
+.navAccountThings{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 30px;
+}
+
+.smallAccountWindow{
+    position: absolute;
+    right: 20px;
+    top: calc(100% + 2px);
+    background: #1C191A;
+    border-radius: 0 0 20px 20px;
+    border: 2px solid #FFBF1B;
+    border-top: none;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.15));
+    padding: 20px 20px 20px 20px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.smallAccountWindow .radioIcon{
+    width: 50px;
+    height: 50px;
+}
+
+.dropDownButton:hover >h3{
+    color: #f4d34a;
+}
+
+.navAccountThings > .dropDownButton:focus + .smallAccountWindow{
+    opacity: 1;
+    pointer-events: auto;
+}
+.smallAccountWindow:focus-within{
+    opacity: 1;
+    pointer-events: auto;
+}
