@@ -2,6 +2,14 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {AccountContext} from "../../context/Account/AccountProvider";
 import axios from "axios";
+import "./Cinema.css"
+
+//Import SVG's
+import exitSign from "../../assets/cinema art/exit-sign.svg"
+import cinemaScene from "../../assets/cinema art/full-cinema.svg"
+
+
+
 
 function Cinema() {
     const { id } = useParams();
@@ -28,6 +36,18 @@ function Cinema() {
         {
             "Title": "I really hope the director is in therapy",
             "text": "whatever"
+        },
+        {
+            "Title": "Did you hear that MUSIC tho",
+            "text": "whatever"
+        },
+        {
+            "Title": "Hm..",
+            "text": "whatever"
+        },
+        {
+            "Title": "No you guys it's good I swear",
+            "text": "whatever"
         }
     ])
     let elementNumber = 0;
@@ -37,7 +57,6 @@ function Cinema() {
     const [ textBubble2, setTextBubble2 ] = useState(<></>)
     const [ textBubble3, setTextBubble3 ] = useState(<></>)
     const [ textBubble4, setTextBubble4 ] = useState(<></>)
-
 
     useEffect(() => {
         const fetchOptionsTmdb = {
@@ -80,7 +99,12 @@ function Cinema() {
     //     void fetchReviewData();
     // }, [movieData, rapidKey, id]);
 
-
+    function setCSSCords( id ){
+        const randVertical = Math.floor(Math.random() * 15 + 50 )
+        const randHorizontal = Math.floor(Math.random() * 62 + 10 )
+        document.documentElement.style.setProperty(`--top${id}`, `${randVertical}%`)
+        document.documentElement.style.setProperty(`--left${id}`, `${randHorizontal}%`)
+    }
     function setReview() {
         let randomHeckling = reviewData[Math.floor(Math.random() * reviewData.length)].Title
 
@@ -92,21 +116,25 @@ function Cinema() {
                     case 0:
                         console.log(elementNumber + " is:")
                         console.log(randomHeckling)
+                        setCSSCords(1)
                         setTextBubble1(randomHeckling)
                         break;
                     case 1:
                         console.log(elementNumber + " is:")
                         console.log(randomHeckling)
+                        setCSSCords(2)
                         setTextBubble2(randomHeckling)
                         break;
                     case 2:
                         console.log(elementNumber + " is:")
                         console.log(randomHeckling)
+                        setCSSCords(3)
                         setTextBubble3(randomHeckling)
                         break;
                     case 3:
                         console.log(elementNumber + " is:")
                         console.log(randomHeckling)
+                        setCSSCords(4)
                         setTextBubble4(randomHeckling)
                         break;
                     default:
@@ -114,13 +142,12 @@ function Cinema() {
                 }
                 elementNumber++
             }
-        }, Math.random() * 20000 + 1000)
+        }, Math.random() * 20000 + 4000)
     }
 
     //Thank you Jordy for helping me out with this snippet!
     useEffect(() => {
-        // interval for random movie tile every 10 seconds
-        const randomMovieTile = setInterval(() => {setReview()}, 2000)
+        const randomMovieTile = setInterval(() => {setReview()}, 3000)
 
         // clear interval on unmount
         return () => {
@@ -134,20 +161,50 @@ function Cinema() {
         <>
             { (Object.keys(reviewData).length > 0) &&
                 <>
-                    <h2>Now watching: {movieData.original_title}</h2>
-                    <div className="heckleContainer">
-                        <p>{textBubble1}</p>
+                    <div className="overlays">
+                        <h2>Now watching: {movieData.original_title}</h2>
+                        <div
+                            className="heckleContainer1"
+                            key={`${textBubble1}1`}
+                        >
+                            <p className="heckle1" >{textBubble1}</p>
+                            <div className="speechLine"/>
+                        </div>
+                        <div
+                            className="heckleContainer2"
+                            key={`${textBubble2}2`}
+                        >
+                            <p className="heckle2" >{textBubble2}</p>
+                            <div className="speechLine"/>
+                        </div>
+                        <div
+                            className="heckleContainer3"
+                            key={`${textBubble3}3`}
+                        >
+                            <p className="heckle3" >{textBubble3}</p>
+                            <div className="speechLine"/>
+                        </div>
+                        <div
+                            className="heckleContainer4"
+                            key={`${textBubble4}4`}
+                        >
+                            <p className="heckle4" >{textBubble4}</p>
+                            <div className="speechLine"/>
+                        </div>
+                        <a href="/highlights">
+                            <img
+                                className="exitSign"
+                                src={exitSign}
+                                alt="oops no exit :)"/>
+                        </a>
                     </div>
-                    <div className="heckleContainer">
-                        <p>{textBubble2}</p>
+                    <div className="cinemaArt">
+                        <img
+                            className="walls"
+                            src={cinemaScene}
+                            alt="oops no walls"/>
                     </div>
-                    <div className="heckleContainer">
-                        <p>{textBubble3}</p>
-                    </div>
-                    <div className="heckleContainer">
-                        <p>{textBubble4}</p>
-                    </div>
-
+    
                 </>
             }
         </>
