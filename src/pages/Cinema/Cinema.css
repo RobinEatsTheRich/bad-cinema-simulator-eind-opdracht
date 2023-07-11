@@ -6,20 +6,22 @@
     top: 0;
     left: 0;
 }
+.overlays p{
+    margin-top: 15px;
+}
+.overlays h3{
+    text-align: center;
+}
 
 .cinemaArt{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 
-    background: grey;
+    background: #151313;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-size: cover;
-}
-
-.cinemaArt img{
-    grid-area: 1 / 1;
 }
 .walls{
     width: 100vw;
@@ -27,6 +29,15 @@
     object-fit: cover;
     position: fixed;
     scale: 1.1;
+}
+.screen{
+    width: 46vw;
+    height: min-content;
+    z-index: 5;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4%;
 }
 .exitSign{
 
@@ -96,6 +107,9 @@
 .heckle1, .heckle2, .heckle3, .heckle4{
     font-size: 20px;
     text-align: start;
+    background-color: rgba(28, 25, 26, 40%);
+    border-radius: 30px;
+    padding: 5px 20px 5px 20px;
 }
 .speechLine{
     height: 40px;

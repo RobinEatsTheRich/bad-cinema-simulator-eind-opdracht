@@ -8,7 +8,13 @@ import "./Cinema.css"
 import exitSign from "../../assets/cinema art/exit-sign.svg"
 import cinemaScene from "../../assets/cinema art/full-cinema.svg"
 
-
+//Import animations
+import actionGif from "../../assets/screen-animations/action.gif"
+import comedyGif from "../../assets/screen-animations/comedy.gif"
+import dramaGif from "../../assets/screen-animations/drama.gif"
+import fantasyGif from "../../assets/screen-animations/fantasy.gif"
+import horrorGif from "../../assets/screen-animations/horror.gif"
+import sciFiGif from "../../assets/screen-animations/sci-fi.gif"
 
 
 function Cinema() {
@@ -51,6 +57,7 @@ function Cinema() {
         }
     ])
     let elementNumber = 0;
+    const [ screenGif, setScreenGif ] = useState(dramaGif);
 
     //These are all the Reviews text bubbles
     const [ textBubble1, setTextBubble1 ] = useState(<></>)
@@ -76,6 +83,39 @@ function Cinema() {
         }
         void fetchMovieData();
     }, [tmdbKey, id]);
+
+    function decideFakeMovie(){
+        if(Object.keys(movieData).length > 0) {
+            console.log(movieData.genres[0].name)
+            switch (movieData.genres[0].name) {
+                case ("Science Fiction"):
+                    setScreenGif(sciFiGif);
+                    break;
+                case ("Adventure" || "Fantasy"):
+                    setScreenGif(fantasyGif);
+                    break;
+                case ("Action" || "War" || "Crime"):
+                    setScreenGif(actionGif);
+                    break;
+                case ("Horror" || "Thriller"):
+                    setScreenGif(horrorGif);
+                    break;
+                case ("Comedy" || "Family"):
+                    setScreenGif(comedyGif);
+                    break;
+                default:
+                    setScreenGif(dramaGif);
+                    break;
+            }
+        }
+    }
+
+    useEffect(()=>{
+        console.log(movieData);
+        if(Object.keys(movieData).length > 0) {
+            decideFakeMovie()
+            }
+    },[movieData])
 
     //This useEffect fetches the REAL reviews
     // useEffect(() => {
@@ -162,7 +202,8 @@ function Cinema() {
             { (Object.keys(reviewData).length > 0) &&
                 <>
                     <div className="overlays">
-                        <h2>Now watching: {movieData.original_title}</h2>
+                        <p>Now Watching:</p>
+                        <h3>{movieData.original_title}</h3>
                         <div
                             className="heckleContainer1"
                             key={`${textBubble1}1`}
@@ -191,7 +232,7 @@ function Cinema() {
                             <p className="heckle4" >{textBubble4}</p>
                             <div className="speechLine"/>
                         </div>
-                        <a href="/highlights">
+                        <a href={`/profile_movie/${movieData.id}`}>
                             <img
                                 className="exitSign"
                                 src={exitSign}
@@ -203,6 +244,10 @@ function Cinema() {
                             className="walls"
                             src={cinemaScene}
                             alt="oops no walls"/>
+                        <img
+                            className="screen"
+                            src={screenGif}
+                            alt="oops no movie"/>
                     </div>
     
                 </>

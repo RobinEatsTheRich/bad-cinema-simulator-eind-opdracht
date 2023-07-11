@@ -11,7 +11,18 @@ import {AccountContext} from "../../context/Account/AccountProvider";
 //Import components
 import Button from "../../components/Button/Button";
 import Logo from "../../components/Logo/Logo";
-import logo from "../../components/Logo/Logo";
+
+//Import art
+import threeDeeGlasses from  "../../assets/icons/Avatars/3dGlasses.svg"
+import blankIcon from  "../../assets/icons/Avatars/blankIcon.svg"
+import hat from  "../../assets/icons/Avatars/hat.svg"
+import stache from  "../../assets/icons/Avatars/stache.svg"
+import sunGlasses from  "../../assets/icons/Avatars/sunGlasses.svg"
+import beer from  "../../assets/icons/Snacks/beer.svg"
+import blankSnack from  "../../assets/icons/Snacks/blankSnack.svg"
+import milkshake from  "../../assets/icons/Snacks/milkshake.svg"
+import nachos from  "../../assets/icons/Snacks/nachos.svg"
+import popcorn from  "../../assets/icons/Snacks/popcorn.svg"
 
 
 function SignUp() {

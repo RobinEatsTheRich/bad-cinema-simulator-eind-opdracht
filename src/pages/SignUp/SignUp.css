@@ -44,7 +44,7 @@ label{
     height: 70px;
 
     border: 2px solid #FFBF1B;
-    background: #353134;
+    background-image: url("../../assets/icons/Snacks/popcorn.svg");
 }
 
 input{
@@ -64,5 +64,7 @@ input:focus{
 
 .signForm button{
     margin-left: auto;
-    margin-bottom: -50px;
+    margin-bottom: -55px;
+    padding-left: 60px;
+    padding-right: 60px;
 }
