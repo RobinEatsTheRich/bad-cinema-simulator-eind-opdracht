@@ -1,18 +1,18 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 export const AccountContext = createContext(null);
 
 function AccountContextProvider({ children }) {
-
     const navigate = useNavigate();
     const [accountData, setAccountData] = useState({
         auth: false,
         userData: {
             alias: "Guest",
             password: "",
-            iconId: 4,
-            snackId: 4,
+            iconId: 5,
+            snackId: 5,
             email: ""
         }
     })
@@ -23,9 +23,6 @@ function AccountContextProvider({ children }) {
     const [rapidKey, setRapidKey] = useState(
         "600a11d05emshc158f5b200c285cp1d59cfjsn9cc360e4d455"
     );
-    const [noviKey, setNoviKey] = useState(
-        ""
-    );
 
     function logOut(){
         setAccountData({
@@ -33,14 +30,26 @@ function AccountContextProvider({ children }) {
             userData: {
                 alias: "Guest",
                 password: "",
-                iconId: 4,
-                snackId: 4,
+                iconId: 5,
+                snackId: 5,
                 email: ""
             }
         })
-        setNoviKey("")
+        localStorage.removeItem('accountData');
         navigate("/")
     }
+
+    useEffect(()=>{
+
+        let localData =
+            JSON.parse(localStorage.getItem('accountData'));
+        if (localData && !accountData.auth){
+            console.log("I should be logged in!")
+            console.log(localData)
+            setAccountData(localData)
+        }
+
+    },[])
 
     const data = {
         accountData,
@@ -49,8 +58,6 @@ function AccountContextProvider({ children }) {
         setTmdbKey,
         rapidKey,
         setRapidKey,
-        noviKey,
-        setNoviKey,
         logOut
     }
 

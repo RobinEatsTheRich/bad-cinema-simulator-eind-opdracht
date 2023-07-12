@@ -53,7 +53,7 @@ function SignIn() {
         async function getToken() {
             try {
                 const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin',postData);
-                setNoviKey(result.data.accessToken)
+                localStorage.setItem('noviKey', result.data.accessToken);
                 console.log(result)
                 setAccountData({
                     auth: true,
@@ -63,7 +63,8 @@ function SignIn() {
                         iconId: accountData.iconId,
                         snackId: accountData.iconId,
                         email: result.data.email
-                    }})
+                    }
+                })
                 navigate('/highlights')
             } catch (e) {
                 console.error(e);
@@ -72,6 +73,10 @@ function SignIn() {
         }
         void getToken()
     }
+
+    useEffect(()=>{
+        localStorage.setItem('accountData', JSON.stringify(accountData));
+    },[accountData])
 
     //Check whether the account can be accepted or not.
     useEffect( () => {

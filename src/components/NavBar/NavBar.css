@@ -61,6 +61,18 @@ nav{
     margin-right: 15px;
 }
 
+.dropDownButton{
+    display: flex;
+    align-items: center;
+}
+.profilePic{
+    margin-left: 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    outline: 2px solid #FFBF1B;
+}
+
 /*/////////////////-small Account window things-/////////////////*/
 
 .navAccountThings{
@@ -93,6 +105,9 @@ nav{
 .dropDownButton:hover >h3{
     color: #f4d34a;
 }
+.dropDownButton:hover >.profilePic{
+    outline: 2px solid #f4d34a;
+}
 
 .navAccountThings > .dropDownButton:focus + .smallAccountWindow{
     opacity: 1;
@@ -101,4 +116,32 @@ nav{
 .smallAccountWindow:focus-within{
     opacity: 1;
     pointer-events: auto;
+}
+.smallAccountWindow:hover{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/*/////////////////-Fix icon sizes-/////////////////*/
+.navAccountThings .iconImage{
+    width: 50px;
+    height: 50px;
+}
+.navAccountThings .snackImage{
+    width: 50px;
+    height: 50px;
+}
+.navAccountThings .snackImage{
+    border-radius: 10px;
+}
+.navAccountThings .iconRadioLabel{
+    width: 50px;
+    height: 50px;
+}
+
+.navAccountThings  .snackRadioLabel{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
 }
