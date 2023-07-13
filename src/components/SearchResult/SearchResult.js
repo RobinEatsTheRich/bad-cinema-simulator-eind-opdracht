@@ -26,7 +26,7 @@ function SearchResult({ result, queryType}) {
                     <figure className= {result.poster_path ? "searchPoster" : "noPoster"}
                     >
                         <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${result.poster_path}`}
-                             alt={`The poster for ${result.title}`}
+                             alt={`No picture available :V`}
                         />
                     </figure>
                     <div className="titleAndYear">

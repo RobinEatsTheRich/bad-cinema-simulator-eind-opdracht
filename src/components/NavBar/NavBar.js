@@ -70,10 +70,6 @@ function NavBar() {
         })
     }
     useEffect(() =>{
-        console.log('This is the account Data:')
-        console.log(accountData)
-        console.log('And this the local Data:')
-        console.log(JSON.parse(localStorage.getItem('accountData')));
         if(accountData.auth) {
             localStorage.setItem('accountData', JSON.stringify(accountData));
         }
@@ -95,7 +91,7 @@ function NavBar() {
                         <div className="separatorLine"/>
                         <Button
                             className="softButton"
-                            type="submit"
+                            buttonType="submit"
                             disabled={!watchQuery}
                         >
                             Search{/*<img src="../assets/looking_glass.png" alt="Search"/>*/}

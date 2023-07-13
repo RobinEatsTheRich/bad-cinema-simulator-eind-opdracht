@@ -21,7 +21,7 @@ function AccountContextProvider({ children }) {
         "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMDcwYTI1MTAyNjdmNWQzZGE0ODVlMzdlMWJlYjhkMCIsInN1YiI6IjY0OTJlMDEzZjlhYTQ3MDBjOGRlOTllZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.53KPFs3yCEm27xFMZ4_TjSZCZCPaQtaxTbvTdby1ELQ"
     );
     const [rapidKey, setRapidKey] = useState(
-        "600a11d05emshc158f5b200c285cp1d59cfjsn9cc360e4d455"
+        "9ccf1862fdmshedf1c7d8aff5704p1644d4jsnd2bc1bc59d84"
     );
 
     function logOut(){
@@ -40,15 +40,11 @@ function AccountContextProvider({ children }) {
     }
 
     useEffect(()=>{
-
         let localData =
             JSON.parse(localStorage.getItem('accountData'));
         if (localData && !accountData.auth){
-            console.log("I should be logged in!")
-            console.log(localData)
             setAccountData(localData)
         }
-
     },[])
 
     const data = {

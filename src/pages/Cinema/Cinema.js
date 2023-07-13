@@ -7,6 +7,10 @@ import "./Cinema.css"
 //Import SVG's
 import exitSign from "../../assets/cinema art/exit-sign.svg"
 import cinemaScene from "../../assets/cinema art/full-cinema.svg"
+import bigThreeDeeGlasses from "../../assets/cinema art/vision obstructions/big3dGlasses.svg"
+import bigHat from "../../assets/cinema art/vision obstructions/bigHat.svg"
+import bigStache from "../../assets/cinema art/vision obstructions/bigStache.svg"
+import bigSunGlasses from "../../assets/cinema art/vision obstructions/bigSunGlasses.svg"
 
 //Import animations
 import actionGif from "../../assets/screen-animations/action.gif"
@@ -15,11 +19,12 @@ import dramaGif from "../../assets/screen-animations/drama.gif"
 import fantasyGif from "../../assets/screen-animations/fantasy.gif"
 import horrorGif from "../../assets/screen-animations/horror.gif"
 import sciFiGif from "../../assets/screen-animations/sci-fi.gif"
+import Button from "../../components/Button/Button";
 
 
 function Cinema() {
     const { id } = useParams();
-    const { tmdbKey, rapidKey } = useContext(AccountContext)
+    const { tmdbKey, rapidKey, accountData } = useContext(AccountContext)
     const [ movieData, setMovieData ] = useState([])
     const [ reviewData, setReviewData ] = useState([
         //Temporary reviewData since my limit for the site is almost reached
@@ -58,6 +63,10 @@ function Cinema() {
     ])
     let elementNumber = 0;
     const [ screenGif, setScreenGif ] = useState(dramaGif);
+    const [ screenObstruction, setScreenObstruction] = useState(<></>)
+    const [ snackSound, setSnackSound] = useState("*Cough cough*")
+    const [ soundButtonText, setSoundButtonText] = useState("make a horrible sound")
+    const [ snackSoundElement, setSnackSoundElement ] = useState(<></>)
 
     //These are all the Reviews text bubbles
     const [ textBubble1, setTextBubble1 ] = useState(<></>)
@@ -84,9 +93,29 @@ function Cinema() {
         void fetchMovieData();
     }, [tmdbKey, id]);
 
+    // useEffect(() => {
+    //     const fetchOptions = {
+    //         method: 'GET',
+    //         url: `https://cinema-api.p.rapidapi.com/get_reviews/${movieData.imdb_id}`,
+    //         headers: {
+    //             'X-RapidAPI-Key': rapidKey,
+    //             'X-RapidAPI-Host': 'cinema-api.p.rapidapi.com'
+    //         }
+    //     }
+    //     async function fetchReviewData() {
+    //         try {
+    //             const result = await axios.request(fetchOptions);
+    //             setReviewData(result.data.data);
+    //         } catch (e) {
+    //             console.error(e);
+    //         }
+    //     }
+    //
+    //     void fetchReviewData();
+    // }, [ movieData ]);
+
     function decideFakeMovie(){
         if(Object.keys(movieData).length > 0) {
-            console.log(movieData.genres[0].name)
             switch (movieData.genres[0].name) {
                 case ("Science Fiction"):
                     setScreenGif(sciFiGif);
@@ -109,35 +138,89 @@ function Cinema() {
             }
         }
     }
+    function decideScreenObstruction(){
+        switch (accountData.userData.iconId) {
+            case "1":
+                setScreenObstruction(
+                    <img
+                    className="bigThreeDeeGlasses"
+                    src={bigThreeDeeGlasses}
+                    alt="The screen is obstructed by big 3D glasses!"/>
+                );
+                break;
+            case "2":
+                setScreenObstruction(
+                    <img
+                        className="bigHat"
+                        src={bigHat}
+                        alt="The screen is obstructed by a baseball cap!"/>
+                );
+                break;
+            case "3":
+                setScreenObstruction(
+                    <img
+                        className="bigStache"
+                        src={bigStache}
+                        alt="The screen is obstructed by a majestic moustache!"/>
+                );
+                break;
+            case "4":
+                setScreenObstruction(
+                    <img
+                        className="bigSunGlasses"
+                        src={bigSunGlasses}
+                        alt="The screen is obstructed by a big pair of sunglasses!"/>
+                );
+                break;
+            default:
+                setScreenObstruction(<></>);
+                break;
+        }
+    }
+    function decideSnack(){
+        switch (accountData.userData.snackId) {
+            case "1":
+                setSnackSound("*Gulp gulp gulp*")
+                setSoundButtonText("Take a gulp")
+                break;
+            case "2":
+                setSnackSound("*Craunch crunch cronch*")
+                setSoundButtonText("Have some nachos")
+                break;
+            case "3":
+                setSnackSound("*SHLRRRRHRRHHRRRRRLP*")
+                setSoundButtonText("Take a sip")
+                break;
+            case "4":
+                setSnackSound("*Chomp chrump crump*")
+                setSoundButtonText("Eat some popcorn")
+                break;
+            default:
+                setSnackSound("*Cough cough*")
+                setSoundButtonText("Take a gulp")
+                break;
+        }
+    }
+    function placeSnackSoundEffect(){
+        setSnackSoundElement(
+            <h2 className="snackSound">{snackSound}</h2>
+        )
+        setTimeout(()=>{
+            setSnackSoundElement(
+                setSnackSoundElement(<></>)
+            )
+        }, 3000)
+    }
 
     useEffect(()=>{
-        console.log(movieData);
         if(Object.keys(movieData).length > 0) {
             decideFakeMovie()
-            }
+        }
     },[movieData])
-
-    //This useEffect fetches the REAL reviews
-    // useEffect(() => {
-    //     const fetchOptions = {
-    //         method: 'GET',
-    //         url: `https://cinema-api.p.rapidapi.com/get_reviews/${movieData.imdb_id}`,
-    //         headers: {
-    //             'X-RapidAPI-Key': rapidKey,
-    //             'X-RapidAPI-Host': 'cinema-api.p.rapidapi.com'
-    //         }
-    //     }
-    //     async function fetchReviewData() {
-    //         try {
-    //             const result = await axios.request(fetchOptions);
-    //             setReviewData(result.data.data);
-    //         } catch (e) {
-    //             console.error(e);
-    //         }
-    //     }
-    //
-    //     void fetchReviewData();
-    // }, [movieData, rapidKey, id]);
+    useEffect(()=>{
+        decideScreenObstruction()
+        decideSnack()
+    },[accountData])
 
     function setCSSCords( id ){
         const randVertical = Math.floor(Math.random() * 15 + 50 )
@@ -145,35 +228,27 @@ function Cinema() {
         document.documentElement.style.setProperty(`--top${id}`, `${randVertical}%`)
         document.documentElement.style.setProperty(`--left${id}`, `${randHorizontal}%`)
     }
+
     function setReview() {
         let randomHeckling = reviewData[Math.floor(Math.random() * reviewData.length)].Title
-
         setTimeout(()=>{
             if (elementNumber >= 4) {
                 elementNumber = 0;
             } else {
                 switch (elementNumber) {
                     case 0:
-                        console.log(elementNumber + " is:")
-                        console.log(randomHeckling)
                         setCSSCords(1)
                         setTextBubble1(randomHeckling)
                         break;
                     case 1:
-                        console.log(elementNumber + " is:")
-                        console.log(randomHeckling)
                         setCSSCords(2)
                         setTextBubble2(randomHeckling)
                         break;
                     case 2:
-                        console.log(elementNumber + " is:")
-                        console.log(randomHeckling)
                         setCSSCords(3)
                         setTextBubble3(randomHeckling)
                         break;
                     case 3:
-                        console.log(elementNumber + " is:")
-                        console.log(randomHeckling)
                         setCSSCords(4)
                         setTextBubble4(randomHeckling)
                         break;
@@ -182,18 +257,21 @@ function Cinema() {
                 }
                 elementNumber++
             }
-        }, Math.random() * 20000 + 4000)
+        }, Math.random() * 20000 + 5000)
     }
 
     //Thank you Jordy for helping me out with this snippet!
     useEffect(() => {
-        const randomMovieTile = setInterval(() => {setReview()}, 3000)
+        const randomMovieTime = 0;
+        if (reviewData.length > 0){
+            setInterval(() => {setReview()}, 4000)
 
+        }
         // clear interval on unmount
         return () => {
-            clearInterval(randomMovieTile)
+            clearInterval(randomMovieTime)
         }
-    }, [])
+    }, [reviewData])
 
 
 
@@ -202,8 +280,22 @@ function Cinema() {
             { (Object.keys(reviewData).length > 0) &&
                 <>
                     <div className="overlays">
-                        <p>Now Watching:</p>
-                        <h3>{movieData.original_title}</h3>
+                        <div className="movieTitle">
+                            <p>Now Watching:</p>
+                            <h3>{movieData.title}</h3>
+                        </div>
+                        <div className="buttonContainer">
+                            {snackSoundElement}
+                            <Button
+                                onClick={placeSnackSoundEffect}
+                            >
+                                {soundButtonText}
+                            </Button>
+
+                        </div>
+                        <div className="obstructedVision">
+                            {screenObstruction}
+                        </div>
                         <div
                             className="heckleContainer1"
                             key={`${textBubble1}1`}

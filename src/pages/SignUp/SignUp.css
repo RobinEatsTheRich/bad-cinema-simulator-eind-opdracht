@@ -1,3 +1,5 @@
+
+/*/////////////////-Main Body styling-/////////////////*/
 root{
     display: flex;
     align-items: center;
@@ -30,6 +32,15 @@ label{
     display: flex;
     flex-direction: row;
 }
+
+.smallText{
+    font-size: 10px;
+    line-height: 20px;
+    margin-left: 5px;
+}
+
+
+/*/////////////////-Make the Radio Icons work-/////////////////*/
 
 .iconInput, .snackInput{
     display: flex;
@@ -92,6 +103,7 @@ label{
     outline: 4px solid white;
 }
 
+/*/////////////////-Some last elements below the icons-/////////////////*/
 input{
     height: 25px;
     border-radius: 20px;
