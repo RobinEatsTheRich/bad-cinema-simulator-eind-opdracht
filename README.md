@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Bad Cinema Simulator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Hello?
+Hello! How quaint of you to drop by on this humble little application.
+It has been made as an end assignment for my course at Novi!
+And in case you've somehow found this application in a different way:
+[You can find the rest of the Git repository here](https://github.com/RobinEatsTheRich/bad-cinema-simulator-eind-opdracht)
 
-## Available Scripts
+### So what is this?
+Ah yes, so you've found yourself in my Bad Cinema Simulator, as the name implies, 
+the goal is to emulate a digital movie-going experience.
+But worse :)
+The idea is that you pick a movie from a list of most popular ones, or search for one manually,
+and then sit in your digital cinema room, but oh no! what's this?
 
-In the project directory, you can run:
+Hecklers.
 
-### `npm start`
+They're shouting through the movie so much, that you can hardly concentrate on this movie! It just looks like a weird cartoon in the background.
+And that hat you were wearing because it looked cool actually is just in the way of the screen!
+All your snacks are also of the loudest variant so you feel bad for making noise too.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+It's a horrible experience.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Had enough? Feel free to exit the digital viewing room, and pick a different movie, who knows, maybe a different movie and a different attire will make all the difference ;)
 
-### `npm test`
+### Why?
+For fun!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### So how do I use it?
+1. You will need a Javascript IDE, I can personally vouch for [Webstorm](https://www.jetbrains.com/webstorm/).
+2. On the [github page of this project](https://github.com/RobinEatsTheRich/bad-cinema-simulator-eind-opdracht), click the "< > Code" button
+3. Copy that SSH Link.
+4. If you use webstorm, go to File -> New -> Project from Version Control.
+   (And if you don't use webstorm, I'm not sure how to help you, but if you google "how to import project from SSH key in **[name of your IDE]**" You should find something to help you.
+5. Paste that SSH key in the URL, and pick a directory for the project that suits you.
+6. Press clone, and trust this project :) if you dare :)
+7. You should now see the complete filestructure being opened.
+8. Webstorm might already prompt you for this with a button, but make sure to run an NPM Install.
+9. If you don't use the prompt button marked "RUN 'NPM INSTALL'",you will need to do so manually.
+10. To do that, you need to navigate to the Terminal, located at the bottom of your Webstorm screen.
+11. There it should have a flickering cursor where you can type.
+12. Type **'npm run install'**
+13. It will spend a few minutes downloading everything you need, but once you're able to type in the terminal again, it should be done.
+14. If everything has worked, try navigating to the terminal again, and typing **'npm start'** into the terminal to actually start the webpage. This might take a few minutes.
+15. If this doesn't work, try **'npm audit fix'** or even **'npm audit fix --force'** that should get rid of most errors.
+16. If that still doesn't work, it becomes a bit more complex so either contact me on Git or try googling, all I can tell you.
+17. If it does work? Congratulations! It works!
 
-### `npm run build`
+All API keys should already be functional in the code, if not, please contact me.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Thank you!
