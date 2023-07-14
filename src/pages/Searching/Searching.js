@@ -47,10 +47,7 @@ function Searching() {
         void fetchData();
     }, [tmdbKey, id, queryType]);
 
-    useEffect(() => {
-        console.log(searchData)
-    }, [searchData]);
-
+    //This actually places all the searchresults in a list.
     useEffect(() => {
         setRenderElement(
             searchData.map((searchResult) =>
@@ -61,6 +58,8 @@ function Searching() {
         )
     }, [searchData]);
 
+    //These two decide the syntax for switching between Cast and Movie.
+    //I put them in little functions so they look less messy in the HTML.
     function toggleQueryType(){
         if (queryType === "movie"){
             return "person"

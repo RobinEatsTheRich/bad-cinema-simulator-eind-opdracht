@@ -1,0 +1,209 @@
+
+/*/////////////////-Various Overlay Items-/////////////////*/
+.overlays{
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.movieTitle{
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+}
+.overlays p{
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+}
+.overlays h3{
+    text-align: center;
+    width: 100%;
+}
+.exitSign{
+
+    position: absolute;
+    width: 6vw;
+    height: max-content;
+    z-index: 80;
+    top: 10%;
+    left: 5%;
+}
+.exitSign:hover {
+    box-shadow: 0 0 20px rgba(145, 193, 93, 20%);
+}
+.exitSign:active {
+    box-shadow: 0 0 22px rgba(255, 255, 255, 30%);
+}
+
+
+/*/////////////////-Snack Sounds!-/////////////////*/
+.buttonContainer{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+}
+.buttonContainer Button{
+    pointer-events: auto;
+    height: min-content;
+    box-shadow: none;
+    margin: 20px;
+    z-index: 100;
+}
+.snackSound{
+    opacity: 0%;
+    animation: fadeInFadeout 3s;
+    z-index: 100;
+
+    background-color: rgba(28, 25, 26, 40%);
+    border-radius: 30px;
+    padding: 5px 20px 5px 20px;
+}
+@keyframes fadeInFadeout {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+
+/*/////////////////-Your Icon has Consequences-/////////////////*/
+.obstructedVision{
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 90;
+    position: fixed;
+    display: flex;
+}
+.bigThreeDeeGlasses, .bigHat, .bigStache, .bigSunGlasses{
+    width: 100%;
+}
+.bigThreeDeeGlasses{
+    margin-top: auto;
+    margin-bottom: auto;
+    object-fit: cover;
+}
+.bigHat{
+    margin-bottom: auto;
+    height: min-content;
+    object-fit: contain;
+}
+.bigStache{
+    margin-top: auto;
+    height: min-content;
+    object-fit: contain;
+}
+.bigSunGlasses{
+    margin-top: auto;
+    object-fit: cover;
+}
+
+/*/////////////////-Hecklers!-/////////////////*/
+
+/*Their random position needs to be added to the root to be read by Javascript!*/
+:root{
+    --top1: 10000px;
+    --left1: 10000px;
+    --top2: 10000px;
+    --left2: 10000px;
+    --top3: 10000px;
+    --left3: 10000px;
+    --top4: 10000px;
+    --left4: 10000px;
+}
+
+.heckleContainer1, .heckleContainer2, .heckleContainer3, .heckleContainer4{
+    display: inline-block;
+    position: fixed;
+    opacity: 0;
+    animation: fadeInFadeout 5s;
+}
+
+@keyframes fadeInFadeout {
+    0% {
+       opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+.heckleContainer1{
+    top: var(--top1);
+    left: var(--left1);
+}
+.heckleContainer2{
+    top: var(--top2);
+    left: var(--left2);
+}
+.heckleContainer3{
+    top: var(--top3);
+    left: var(--left3);
+}
+.heckleContainer4{
+    top: var(--top4);
+    left: var(--left4);
+}
+
+.heckle1, .heckle2, .heckle3, .heckle4{
+    font-size: 20px;
+    text-align: start;
+    background-color: rgba(28, 25, 26, 40%);
+    border-radius: 30px;
+    padding: 5px 20px 5px 20px;
+}
+.speechLine{
+    height: 40px;
+    width: 20px;
+    border-radius: 0 0 60% 0;
+    border-right: 3px solid #FFBF1B;
+    margin-left: 10%;
+}
+
+/*/////////////////-And lastly, the background art-/////////////////*/
+
+.cinemaArt{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    background: #151313;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+.walls{
+    width: 100vw;
+    z-index: 10;
+    object-fit: cover;
+    position: fixed;
+    scale: 1.1;
+}
+.screen{
+    width: 46vw;
+    height: min-content;
+    z-index: 5;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4%;
+}

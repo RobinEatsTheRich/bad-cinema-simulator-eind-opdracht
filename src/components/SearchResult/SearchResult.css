@@ -24,8 +24,17 @@
     background: white;
 }
 .noPoster {
+    height: 150px;
     width: 100px;
+    border-radius: 3px;
+    border: 2px solid white;
     margin-right: 15px;
+}
+.noPoster img{
+    height: 100%;
+    display: table-cell;
+    text-align: center;
+    vertical-align: center;
 }
 
 .titleAndYear h2{

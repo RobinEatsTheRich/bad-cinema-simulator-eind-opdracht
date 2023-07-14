@@ -82,14 +82,14 @@ function ProfileCast() {
                             <h2>Stars in:</h2>
                         </div>
                     </header>
-                    <div className="searchResults">
+                    <article className="resultsContainer">
                         {creditData.map((movie) =>
                             <SearchResult
                                 result={movie}
                                 queryType="movie"
                             />
                         )}
-                    </div>
+                    </article>
                 </div>
             }
         </>

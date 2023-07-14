@@ -8,9 +8,8 @@
   background: none;
 }
 
-/*placeholder:*/
-figure{
-  height: 150px;
+a{
+  text-decoration: none;
 }
 
 /*/////////////--Typography--/////////////*/
@@ -37,14 +36,12 @@ p, label, button, input, a{
   font-size: 16px;
   font-weight: lighter;
 }
-.smallText{
-  font-size: 10px;
+.bigText{
+    font-size: 16px;
+    text-align: left;
 }
 .errorMessage{
-  color: #c63c60;
-}
-.accentText{
-  color: #FFBF1B;
+  color: #e5164c;
 }
 
 /*/////////////--Global Elements--/////////////*/
@@ -77,10 +74,6 @@ body{
   justify-content: center;
   align-items: center;
   padding-top: 70px;
-}
-
-a{
-  text-decoration: none;
 }
 img{
   height: 100%;

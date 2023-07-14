@@ -1,3 +1,5 @@
+
+/*/////////////////-Main Body styling-/////////////////*/
 root{
     display: flex;
     align-items: center;
@@ -30,6 +32,16 @@ label{
     display: flex;
     flex-direction: row;
 }
+
+.smallText{
+    font-size: 10px;
+    line-height: 20px;
+    margin-left: 5px;
+}
+
+
+/*/////////////////-Make the Radio Icons work-/////////////////*/
+
 .iconInput, .snackInput{
     display: flex;
     flex-direction: column;
@@ -37,16 +49,61 @@ label{
 .options{
     display: flex;
     justify-content: space-between;
+    gap: 10px;
+}
+.iconRadioContainer{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    border-radius: 50%;
+}
+.snackRadioContainer{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    border-radius: 20px;
+}
+
+.iconImage, .snackImage{
+    width: 70px;
+    height: 70px;
+    grid-area: 1 / 1;
+    z-index: 30;
+    pointer-events: none;
+}
+.iconImage{
+    border-radius: 50%;
+}
+.snackImage{
+    border-radius: 15px;
 }
 
 .radioIcon{
+    display: none;
+}
+.iconRadioLabel, .snackRadioLabel{
+    display: inline-block;
     width: 70px;
     height: 70px;
-
-    border: 2px solid #FFBF1B;
-    background: #353134;
+    grid-area: 1 / 1;
+    z-index: 20;
+    background-color: #FFBF1B;
+    outline: 2px solid #FFBF1B;
+}
+.iconRadioLabel{
+    border-radius: 50%;
+}
+.snackRadioLabel{
+    border-radius: 15px;
+}
+.radioIcon:checked + .iconRadioLabel {
+    outline: 4px solid white;
+}
+.radioIcon:checked + .snackRadioLabel {
+    outline: 4px solid white;
 }
 
+/*/////////////////-Some last elements below the icons-/////////////////*/
 input{
     height: 25px;
     border-radius: 20px;
@@ -64,5 +121,7 @@ input:focus{
 
 .signForm button{
     margin-left: auto;
-    margin-bottom: -50px;
+    margin-bottom: -55px;
+    padding-left: 60px;
+    padding-right: 60px;
 }

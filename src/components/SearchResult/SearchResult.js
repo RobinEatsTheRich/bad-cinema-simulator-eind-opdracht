@@ -7,15 +7,14 @@ import {newWindowContext} from "../../context/newWindowProvider/newWindowProvide
 
 //Import Components
 import Button from "../Button/Button";
-import {useNavigate} from "react-router-dom";
 
 
 
 function SearchResult({ result, queryType}) {
 
     const { PlaceConfirmWindow } = useContext(newWindowContext)
-    const navigate = useNavigate();
 
+    //What to show if the searchresult is for a movie.
     if (queryType === "movie"){
         return (
             <article className="searchResult">
@@ -26,7 +25,7 @@ function SearchResult({ result, queryType}) {
                     <figure className= {result.poster_path ? "searchPoster" : "noPoster"}
                     >
                         <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${result.poster_path}`}
-                             alt={`The poster for ${result.title}`}
+                             alt={`No picture available :V`}
                         />
                     </figure>
                     <div className="titleAndYear">
@@ -43,6 +42,7 @@ function SearchResult({ result, queryType}) {
             </article>
         );
     }
+    //What to show if the search result is for a cast member.
     else{
         return (
             <a

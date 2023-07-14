@@ -13,7 +13,7 @@
     font-weight: 400;
     letter-spacing: 7px;
     height: 36px;
-    margin-left: 5px;
+    margin-left: 0;
 }
 .logoText:hover{
     color: #f4d34a;
@@ -22,7 +22,8 @@
      color: white;
  }
 
-p{
-    text-align: center;
+.logo p{
+    text-align: left;
     font-size: 10px;
+    margin-left: -5px;
 }

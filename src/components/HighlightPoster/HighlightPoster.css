@@ -4,6 +4,7 @@
 }
 .highLightPoster p{
     overflow-wrap: normal;
+    text-align: center;
     margin-top: 5px;
     font-size: 12px;
 }
