@@ -27,40 +27,42 @@ function Cinema() {
     const { tmdbKey, rapidKey, accountData } = useContext(AccountContext)
     const [ movieData, setMovieData ] = useState([])
     const [ reviewData, setReviewData ] = useState([
-        //Temporary reviewData since my limit for the site is almost reached
-        {
-            "Title": "wow this sucks",
-            "text": "whatever"
-        },
-        {
-            "Title": "Actually I kinda like it?",
-            "text": "whatever"
-        },
-        {
-            "Title": "This truly changed my life",
-            "text": "whatever"
-        },
-        {
-            "Title": "bad",
-            "text": "whatever"
-        },
-        {
-            "Title": "I really hope the director is in therapy",
-            "text": "whatever"
-        },
-        {
-            "Title": "Did you hear that MUSIC tho",
-            "text": "whatever"
-        },
-        {
-            "Title": "Hm..",
-            "text": "whatever"
-        },
-        {
-            "Title": "No you guys it's good I swear",
-            "text": "whatever"
-        }
+        //Temporary reviewData for when your RapidAPI Fetch limit is (almost) reached:
+
+        // {
+        //     "Title": "wow this sucks",
+        //     "text": "whatever"
+        // },
+        // {
+        //     "Title": "Actually I kinda like it?",
+        //     "text": "whatever"
+        // },
+        // {
+        //     "Title": "This truly changed my life",
+        //     "text": "whatever"
+        // },
+        // {
+        //     "Title": "bad",
+        //     "text": "whatever"
+        // },
+        // {
+        //     "Title": "I really hope the director is in therapy",
+        //     "text": "whatever"
+        // },
+        // {
+        //     "Title": "Did you hear that MUSIC tho",
+        //     "text": "whatever"
+        // },
+        // {
+        //     "Title": "Hm..",
+        //     "text": "whatever"
+        // },
+        // {
+        //     "Title": "No you guys it's good I swear",
+        //     "text": "whatever"
+        // }
     ])
+
     let elementNumber = 0;
     const [ screenGif, setScreenGif ] = useState(dramaGif);
     const [ screenObstruction, setScreenObstruction] = useState(<></>)
@@ -74,6 +76,7 @@ function Cinema() {
     const [ textBubble3, setTextBubble3 ] = useState(<></>)
     const [ textBubble4, setTextBubble4 ] = useState(<></>)
 
+    //Fetch the data of the movie through the page ID
     useEffect(() => {
         const fetchOptionsTmdb = {
             method: 'GET',
@@ -93,27 +96,30 @@ function Cinema() {
         void fetchMovieData();
     }, [tmdbKey, id]);
 
-    // useEffect(() => {
-    //     const fetchOptions = {
-    //         method: 'GET',
-    //         url: `https://cinema-api.p.rapidapi.com/get_reviews/${movieData.imdb_id}`,
-    //         headers: {
-    //             'X-RapidAPI-Key': rapidKey,
-    //             'X-RapidAPI-Host': 'cinema-api.p.rapidapi.com'
-    //         }
-    //     }
-    //     async function fetchReviewData() {
-    //         try {
-    //             const result = await axios.request(fetchOptions);
-    //             setReviewData(result.data.data);
-    //         } catch (e) {
-    //             console.error(e);
-    //         }
-    //     }
-    //
-    //     void fetchReviewData();
-    // }, [ movieData ]);
 
+    //Fetch reviews from that movie from the IMDB id of the Moviedata.
+    useEffect(() => {
+        const fetchOptions = {
+            method: 'GET',
+            url: `https://cinema-api.p.rapidapi.com/get_reviews/${movieData.imdb_id}`,
+            headers: {
+                'X-RapidAPI-Key': rapidKey,
+                'X-RapidAPI-Host': 'cinema-api.p.rapidapi.com'
+            }
+        }
+        async function fetchReviewData() {
+            try {
+                const result = await axios.request(fetchOptions);
+                setReviewData(result.data.data);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        void fetchReviewData();
+    }, [ movieData ]);
+
+    //This function checks what the first genre of the movie is, and plays one of my animations that fits it :)
     function decideFakeMovie(){
         if(Object.keys(movieData).length > 0) {
             switch (movieData.genres[0].name) {
@@ -138,6 +144,9 @@ function Cinema() {
             }
         }
     }
+
+    //This checks your Icon to make an obnoxious filter through which to view the cinema.
+    //It is a Bad Cinema Simulator after all.
     function decideScreenObstruction(){
         switch (accountData.userData.iconId) {
             case "1":
@@ -177,6 +186,8 @@ function Cinema() {
                 break;
         }
     }
+
+    //These two function looks at your favourite snack and allows the user to partake of its noisy goodness in the cinema.
     function decideSnack(){
         switch (accountData.userData.snackId) {
             case "1":
@@ -212,6 +223,7 @@ function Cinema() {
         }, 3000)
     }
 
+    //These get the party started at the right moment.
     useEffect(()=>{
         if(Object.keys(movieData).length > 0) {
             decideFakeMovie()
@@ -222,6 +234,7 @@ function Cinema() {
         decideSnack()
     },[accountData])
 
+    //This makes sure the Heckler-texts are randomly positioned.
     function setCSSCords( id ){
         const randVertical = Math.floor(Math.random() * 15 + 50 )
         const randHorizontal = Math.floor(Math.random() * 62 + 10 )
@@ -229,6 +242,7 @@ function Cinema() {
         document.documentElement.style.setProperty(`--left${id}`, `${randHorizontal}%`)
     }
 
+    //And this is the cycle deciding which review should go to which box.
     function setReview() {
         let randomHeckling = reviewData[Math.floor(Math.random() * reviewData.length)].Title
         setTimeout(()=>{
@@ -260,7 +274,7 @@ function Cinema() {
         }, Math.random() * 20000 + 5000)
     }
 
-    //Thank you Jordy for helping me out with this snippet!
+    //Thank you Jordy for helping me out with this snippet that gets the cycle going!
     useEffect(() => {
         const randomMovieTime = 0;
         if (reviewData.length > 0){

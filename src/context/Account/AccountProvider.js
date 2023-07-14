@@ -17,9 +17,11 @@ function AccountContextProvider({ children }) {
         }
     })
 
+    //Place your TMDB key here:
     const [tmdbKey, setTmdbKey] = useState(
         "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMDcwYTI1MTAyNjdmNWQzZGE0ODVlMzdlMWJlYjhkMCIsInN1YiI6IjY0OTJlMDEzZjlhYTQ3MDBjOGRlOTllZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.53KPFs3yCEm27xFMZ4_TjSZCZCPaQtaxTbvTdby1ELQ"
     );
+    //and your Rapid key here:
     const [rapidKey, setRapidKey] = useState(
         "9ccf1862fdmshedf1c7d8aff5704p1644d4jsnd2bc1bc59d84"
     );
@@ -39,6 +41,7 @@ function AccountContextProvider({ children }) {
         navigate("/")
     }
 
+    //This makes sure your accountData is repaired if the user refreshes their page.
     useEffect(()=>{
         let localData =
             JSON.parse(localStorage.getItem('accountData'));

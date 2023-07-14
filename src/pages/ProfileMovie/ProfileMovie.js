@@ -29,6 +29,7 @@ function ProfileMovie() {
                 Authorization: `Bearer ${tmdbKey}`
             }
         }
+        //This fetches some general info about the movie, like year, name, poster, stuff like that.
         async function fetchMovieData() {
             try {
                 const result = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, fetchOptions);
@@ -37,6 +38,7 @@ function ProfileMovie() {
                 console.error(e);
             }
         }
+        //This fetches a list of all the people who worked on it.
         async function fetchCastData() {
             try {
                 const result = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`, fetchOptions);
@@ -71,6 +73,8 @@ function ProfileMovie() {
                                 <h1>{movieData.title.toUpperCase()}</h1>
                                 <h2>{movieData.release_date.slice(0, 4)}</h2>
                             </div>
+
+                            {/*//////////////--Here are the directors.--//////////////*/}
                             <div className="castField">
                                 <h2>Directed by:</h2>
                                 <ul className="castList">
@@ -92,6 +96,8 @@ function ProfileMovie() {
                                     )}
                                 </ul>
                             </div>
+
+                            {/*//////////////--And here are the actors.--//////////////*/}
                             <div className="castField">
                                 <h2>Cast:</h2>
                                 <ul className="castList">

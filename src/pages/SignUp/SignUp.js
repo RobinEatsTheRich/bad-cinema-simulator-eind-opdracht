@@ -58,7 +58,7 @@ function SignUp() {
         void testBackend();
     }, []);
 
-    //Check whether the account can be accepted or not.
+    //Check whether the entered account info can be accepted or not.
     useEffect( () => {
         if(firstRender)
             toggleFirstRender(false)
@@ -89,11 +89,12 @@ function SignUp() {
             //If the person doesn't want to share this data, I just randomly generate a new email for them to satisfy the backend.
             "email" : (
                 data.email ? data.email
-                    : `${Math.floor(Math.random() * 999)}@email.com`
+                    : `${Math.floor(Math.random() * 9999)}@email.com`
             ),
             "role": ["user"]
         }
 
+        //Register the account
         async function postToBackend() {
             try {
                const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', postData);
@@ -109,6 +110,8 @@ function SignUp() {
             "username": data.username,
             "password": data.password
         }
+
+        //And then get that sweet, sweet key.
         async function getToken() {
             try {
                 const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin',postDataLogIn);
@@ -131,15 +134,18 @@ function SignUp() {
         void postToBackend();
     }
 
+    //Don't forget to store that info.
     useEffect(()=>{
         localStorage.setItem('accountData', JSON.stringify(accountData));
     },[accountData])
+
 
     function decodeError(e){
         e.response.data.message ?
             setErrorMessage(e.response.data.message)
             :
-            setErrorMessage("Please check email validity")
+            //This used to say "Please check Email Validity" but then I got that error when it wasn't the email, so apparently it needed to be something else.
+            setErrorMessage("Please check account info validity")
     }
 
     return (
@@ -149,6 +155,8 @@ function SignUp() {
                 <h2 className="formHeader">Create Account</h2>
                 <form onSubmit={handleSubmit(onFormSubmit)}
                 className="signForm">
+
+                    {/*//////////////--Choose an Icon--//////////////*/}
                     <div className="iconInput">
                         <p className="bigText">Icon</p>
                         <div className="options">
@@ -240,6 +248,8 @@ function SignUp() {
                             </div>
                         </div>
                     </div>
+
+                    {/*//////////////--Choose a Snack--//////////////*/}
                     <div className="snackInput">
                         <p className="bigText">Favourite Cinema Snack</p>
                         <div className="options">
@@ -331,6 +341,7 @@ function SignUp() {
                             </div>
                         </div>
                     </div>
+                    {/*//////////////--And then here's your run-of-the-mill usernames and passwords and such.--//////////////*/}
                     <label htmlFor="usernameInput">Alias
                         <p className="smallText">(Must contain 6 characters)</p>
                     </label>
@@ -356,6 +367,8 @@ function SignUp() {
                         {...register("email")}
                     />
                     <p className="errorMessage">{errorMessage}</p>
+                    {/*//////////////--And to go to Log-in, or refuse creating an account altogether...
+                    or just to confirm your choices.--//////////////*/}
                     <div className="otherRoutes">
                         <Link
                             className="softButton"

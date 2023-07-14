@@ -32,6 +32,7 @@ function NavBar() {
 
     const watchQuery = watch('searchQuery');
 
+    //Show the right icon in the topright corner.
     useEffect(()=>{
         switch (accountData.userData.iconId){
             case "1":
@@ -56,6 +57,7 @@ function NavBar() {
         navigate(`/searching/${data.searchQuery}`)
     }
 
+    //Set the new accountData if people change their profile around.
     function onAccountPageSubmit(data){
         localStorage.removeItem('accountData')
         console.log(data)
@@ -78,6 +80,7 @@ function NavBar() {
     return (
         <>
             <nav>
+                {/*//////////////--The centerpiece of the Navigation Bar--//////////////*/}
                 <div className="navCenterPiece">
                     <Logo/>
                     <form
@@ -94,10 +97,12 @@ function NavBar() {
                             buttonType="submit"
                             disabled={!watchQuery}
                         >
-                            Search{/*<img src="../assets/looking_glass.png" alt="Search"/>*/}
+                            Search
                         </Button>
                     </form>
                 </div>
+
+                {/*//////////////--The rightmost Account info--//////////////*/}
                 <div className="navAccountThings">
                     <Button
                         className="softButton"
@@ -117,6 +122,7 @@ function NavBar() {
                             alt={`Profile Pic ${accountData.userData.iconId}`}/>
                     </a>
 
+                    {/*//////////////--The Account-info Pop-up--//////////////*/}
                     <article className="smallAccountWindow">
                         { accountData.auth &&
                             <form onSubmit={handleSubmit(onAccountPageSubmit)}
@@ -326,6 +332,7 @@ function NavBar() {
                                 >Okay!</Button>
                             </form>
                         }
+                        {/*//////////////--And an alternative to show for when the user isn't logged in.--//////////////*/}
                         {
                             !accountData.auth &&
                             <h3 className="errorMessage">Log in to edit account appearance</h3>

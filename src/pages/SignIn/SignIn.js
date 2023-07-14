@@ -45,6 +45,7 @@ function SignIn() {
         void testBackend();
     }, []);
 
+    //Get your free Novi Key here folks, fresh from the market.
     function onFormSubmit(data) {
         const postData = {
             "username": data.username,
@@ -74,6 +75,7 @@ function SignIn() {
         void getToken()
     }
 
+    //Gotta makes sure it's stored.
     useEffect(()=>{
         localStorage.setItem('accountData', JSON.stringify(accountData));
     },[accountData])
@@ -94,6 +96,7 @@ function SignIn() {
 
     },[ watchUsername, watchPassword ])
 
+    //A nice error message always helps debugging for users.
     function decodeError(e){
         e.response.data.message ?
             setErrorMessage(e.response.data.message)
