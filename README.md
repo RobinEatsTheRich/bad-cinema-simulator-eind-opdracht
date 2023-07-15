@@ -1,13 +1,20 @@
 # Bad Cinema Simulator
+![The website in all its glory](src%2Fassets%2FScreenshot.png)
 
-### Hello?
+## Index
+* [Introduction](#Introduction)
+* [System Requirements](#System-requirements)
+* [Installation guide](#Installation-guide)
+* [Other Commands](#Custom-NPM-commands)
+
+
+### Introduction
 Hello! How quaint of you to drop by on this humble little application.
 It has been made as an end assignment for my course at Novi!
 And in case you've somehow found this application in a different way:
 [You can find the rest of the Git repository here](https://github.com/RobinEatsTheRich/bad-cinema-simulator-eind-opdracht)
 
-### So what is this?
-Ah yes, so you've found yourself in my Bad Cinema Simulator, as the name implies, 
+You've found yourself in my Bad Cinema Simulator, as the name implies, 
 the goal is to emulate a digital movie-going experience.
 But worse :)
 The idea is that you pick a movie from a list of most popular ones, or search for one manually,
@@ -23,10 +30,10 @@ It's a horrible experience.
 
 Had enough? Feel free to exit the digital viewing room, and pick a different movie, who knows, maybe a different movie and a different attire will make all the difference ;)
 
-### Why?
-For fun!
+### System-requirements
+Theoretically any device with a browser should do, but boy does it look a lot better on desktop, highly recommend using it on a desktop browser like [Firefox](https://www.mozilla.org/en-US/firefox/windows/) or [DuckDuckGo](https://duckduckgo.com/)!
 
-### So how do I use it?
+### Installation-guide
 1. You will need a Javascript IDE, I can personally vouch for [Webstorm](https://www.jetbrains.com/webstorm/).
 2. On the [github page of this project](https://github.com/RobinEatsTheRich/bad-cinema-simulator-eind-opdracht), click the "< > Code" button
 3. Copy that SSH Link.
@@ -47,5 +54,9 @@ For fun!
 17. If it does work? Congratulations! It works!
 
 All API keys should already be functional in the code, if not, please contact me.
+
+
+### Custom-NPM-commands
+As far as I'm aware no cool custom commands:(
 
 ### Thank you!
